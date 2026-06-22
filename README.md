@@ -2,6 +2,8 @@
 
 网页动效 & 创意前端作品集。每个项目独立一个文件夹，可直接用任意静态服务器运行。
 
+> **Author:** 咖啡色的猫 / [@yuzhengning148](https://github.com/yuzhengning148)
+
 ## 项目列表
 
 | # | 项目 | 技术栈 | 说明 |
@@ -33,6 +35,7 @@ npx serve .
 ```
 web-creative/
 ├── README.md
+├── LICENSE
 ├── .gitignore
 ├── 001-landing-reveal/       # TTTISE Outfit Landing Page
 │   ├── index.html

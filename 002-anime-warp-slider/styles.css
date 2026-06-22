@@ -99,4 +99,23 @@ canvas {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  .slider-footer {
+    left: 50%;
+    right: auto;
+    text-align: center;
+    transform: translateX(-50%);
+  }
+}
+
+.slider-footer {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 3;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.05em;
+  user-select: none;
 }
