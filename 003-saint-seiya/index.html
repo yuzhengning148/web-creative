@@ -3,164 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>圣斗士星矢 冥王神话 — 黄金十二宫 | 咖啡色的猫</title>
+  <title>冥王神话 · 黄金十二宫 | 咖啡色的猫</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- 星空背景 -->
-  <div class="stars"></div>
+  <div class="cursor"></div>
 
-  <!-- 序章 -->
-  <section class="hero">
-    <p class="hero-label">THE LOST CANVAS</p>
-    <h1 class="hero-title">冥王神话</h1>
-    <p class="hero-sub">十二位黄金圣斗士 · 群星集结</p>
-    <div class="hero-scroll">向下滚动探索 ↓</div>
-  </section>
+  <main>
 
-  <!-- 全黄金群像 -->
-  <section class="group-portrait">
-    <div class="group-image">
-      <img src="assets/sagittarius-group.jpg" alt="黄金十二宫" />
-    </div>
-    <p class="group-caption">圣域传说 · 十二黄金圣斗士</p>
-  </section>
+    <!-- 扉页 -->
+    <section class="page cover">
+      <div class="cover-line"></div>
+      <h1>冥王神话</h1>
+      <p class="cover-sub">THE LOST CANVAS</p>
+      <p class="cover-note">黄金圣斗士 · 影像集</p>
+    </section>
 
-  <!-- 画廊 -->
-  <section class="gallery">
-    <h2 class="gallery-title">黄金圣斗士</h2>
-
-    <div class="saint-grid">
-
-      <div class="saint-card">
-        <div class="card-glow"></div>
+    <!-- I 白羊座 -->
+    <section class="page spread">
+      <div class="spread-image">
         <img src="assets/aries-mu.jpg" alt="白羊座 穆" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第一宮</span>
-          <h3>白羊座</h3>
-          <p>穆 · 修复与再生之力</p>
-        </div>
       </div>
-
-      <div class="saint-card">
-        <div class="card-glow"></div>
-        <img src="assets/gold-group-b.jpg" alt="金牛座" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第二宮</span>
-          <h3>金牛座</h3>
-          <p>阿鲁迪巴 · 巨型号角</p>
-        </div>
+      <div class="spread-caption">
+        <span class="num">I</span>
+        <h2>白羊座<span class="en">Aries</span></h2>
+        <p>穆 — 修复与再生之力</p>
       </div>
+    </section>
 
-      <div class="saint-card">
-        <div class="card-glow"></div>
+    <!-- II 金牛座 -->
+    <section class="page spread alt">
+      <div class="spread-image">
+        <img src="assets/gold-group-b.jpg" alt="金牛座 阿鲁迪巴" loading="lazy" />
+      </div>
+      <div class="spread-caption">
+        <span class="num">II</span>
+        <h2>金牛座<span class="en">Taurus</span></h2>
+        <p>阿鲁迪巴 — 巨型号角</p>
+      </div>
+    </section>
+
+    <!-- III 双子座 -->
+    <section class="page spread">
+      <div class="spread-image">
         <img src="assets/gemini-saga.jpg" alt="双子座 撒加" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第三宮</span>
-          <h3>双子座</h3>
-          <p>撒加 · 银河爆裂</p>
-        </div>
       </div>
-
-      <div class="saint-card">
-        <div class="card-glow"></div>
-        <img src="assets/cancer-deathmask.jpg" alt="巨蟹座" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第四宮</span>
-          <h3>巨蟹座</h3>
-          <p>迪斯马斯克 · 积尸气冥界波</p>
-        </div>
+      <div class="spread-caption">
+        <span class="num">III</span>
+        <h2>双子座<span class="en">Gemini</span></h2>
+        <p>撒加 — 银河爆裂</p>
       </div>
+    </section>
 
-      <div class="saint-card featured">
-        <div class="card-glow"></div>
+    <!-- IV 巨蟹座 -->
+    <section class="page spread alt">
+      <div class="spread-image">
+        <img src="assets/cancer-deathmask.jpg" alt="巨蟹座 迪斯马斯克" loading="lazy" />
+      </div>
+      <div class="spread-caption">
+        <span class="num">IV</span>
+        <h2>巨蟹座<span class="en">Cancer</span></h2>
+        <p>迪斯马斯克 — 积尸气冥界波</p>
+      </div>
+    </section>
+
+    <!-- V 狮子座 -->
+    <section class="page spread">
+      <div class="spread-image">
         <img src="assets/leo-aiolia.jpg" alt="狮子座 艾奥里亚" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第五宮</span>
-          <h3>狮子座</h3>
-          <p>艾奥里亚 · 闪电光速拳</p>
-        </div>
       </div>
+      <div class="spread-caption">
+        <span class="num">V</span>
+        <h2>狮子座<span class="en">Leo</span></h2>
+        <p>艾奥里亚 — 闪电光速拳</p>
+      </div>
+    </section>
 
-      <div class="saint-card">
-        <div class="card-glow"></div>
+    <!-- VI 处女座 -->
+    <section class="page spread alt">
+      <div class="spread-image">
         <img src="assets/gold-group-shaka.jpg" alt="处女座 沙加" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第六宮</span>
-          <h3>处女座</h3>
-          <p>沙加 · 天舞宝轮</p>
-        </div>
       </div>
+      <div class="spread-caption">
+        <span class="num">VI</span>
+        <h2>处女座<span class="en">Virgo</span></h2>
+        <p>沙加 — 天舞宝轮</p>
+      </div>
+    </section>
 
-      <div class="saint-card">
-        <div class="card-glow"></div>
+    <!-- VII 天秤座 -->
+    <section class="page spread">
+      <div class="spread-image">
         <img src="assets/libra-dohko.jpg" alt="天秤座 童虎" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第七宮</span>
-          <h3>天秤座</h3>
-          <p>童虎 · 庐山百龙霸</p>
-        </div>
       </div>
+      <div class="spread-caption">
+        <span class="num">VII</span>
+        <h2>天秤座<span class="en">Libra</span></h2>
+        <p>童虎 — 庐山百龙霸</p>
+      </div>
+    </section>
 
-      <div class="saint-card">
-        <div class="card-glow"></div>
+    <!-- VIII 天蝎座 -->
+    <section class="page spread alt">
+      <div class="spread-image">
         <img src="assets/gold-group-b.jpg" alt="天蝎座 米罗" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第八宮</span>
-          <h3>天蝎座</h3>
-          <p>米罗 · 深红毒针</p>
-        </div>
       </div>
+      <div class="spread-caption">
+        <span class="num">VIII</span>
+        <h2>天蝎座<span class="en">Scorpio</span></h2>
+        <p>米罗 — 深红毒针</p>
+      </div>
+    </section>
 
-      <div class="saint-card spotlight">
-        <div class="card-glow"></div>
+    <!-- IX 射手座 ★ -->
+    <section class="page spread hero-spread">
+      <div class="spread-image">
         <img src="assets/sagittarius-sisyphe-lc.jpg" alt="射手座 希绪弗斯" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第九宮 ★</span>
-          <h3>射手座</h3>
-          <p>希绪弗斯 · 黄金之箭</p>
-        </div>
       </div>
+      <div class="spread-caption">
+        <span class="num star">IX</span>
+        <h2>射手座<span class="en">Sagittarius</span></h2>
+        <p>希绪弗斯 — 黄金之箭</p>
+      </div>
+    </section>
 
-      <div class="saint-card">
-        <div class="card-glow"></div>
+    <!-- X 摩羯座 -->
+    <section class="page spread">
+      <div class="spread-image">
         <img src="assets/gold-group-five.jpg" alt="摩羯座 修罗" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第十宮</span>
-          <h3>摩羯座</h3>
-          <p>修罗 · 圣剑</p>
-        </div>
       </div>
+      <div class="spread-caption">
+        <span class="num">X</span>
+        <h2>摩羯座<span class="en">Capricorn</span></h2>
+        <p>修罗 — 圣剑</p>
+      </div>
+    </section>
 
-      <div class="saint-card">
-        <div class="card-glow"></div>
+    <!-- XI 水瓶座 -->
+    <section class="page spread alt">
+      <div class="spread-image">
         <img src="assets/gold-group-five.jpg" alt="水瓶座 卡妙" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第十一宮</span>
-          <h3>水瓶座</h3>
-          <p>卡妙 · 曙光女神之宽恕</p>
-        </div>
       </div>
+      <div class="spread-caption">
+        <span class="num">XI</span>
+        <h2>水瓶座<span class="en">Aquarius</span></h2>
+        <p>卡妙 — 曙光女神之宽恕</p>
+      </div>
+    </section>
 
-      <div class="saint-card">
-        <div class="card-glow"></div>
+    <!-- XII 双鱼座 -->
+    <section class="page spread">
+      <div class="spread-image">
         <img src="assets/gold-group-five.jpg" alt="双鱼座 阿布罗狄" loading="lazy" />
-        <div class="card-info">
-          <span class="card-number">第十二宮</span>
-          <h3>双鱼座</h3>
-          <p>阿布罗狄 · 皇家恶魔玫瑰</p>
-        </div>
       </div>
+      <div class="spread-caption">
+        <span class="num">XII</span>
+        <h2>双鱼座<span class="en">Pisces</span></h2>
+        <p>阿布罗狄 — 皇家恶魔玫瑰</p>
+      </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- 末页 -->
+    <section class="page colophon">
+      <div class="colophon-line"></div>
+      <p>雅典娜的圣斗士，永远守护大地的爱与正义</p>
+      <p class="author">Crafted by 咖啡色的猫</p>
+    </section>
 
-  <!-- 尾页 -->
-  <section class="outro">
-    <p class="outro-text">雅典娜的圣斗士，永远守护大地的爱与正义</p>
-    <p class="outro-author">Crafted by 咖啡色的猫</p>
-  </section>
+  </main>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>

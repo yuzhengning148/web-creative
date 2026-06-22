@@ -1,305 +1,218 @@
 /* ========================================
-   圣斗士星矢 冥王神话 — 黄金十二宫
-   唯美画廊展示
+   冥王神话 · 黄金十二宫 — 影像集
    ======================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&display=swap");
 
 :root {
-  --bg-deep: #060914;
-  --gold: #cfaa5c;
-  --gold-bright: #f0d68a;
-  --gold-dim: #8b6914;
-  --text-primary: #e8dcc8;
-  --text-dim: rgba(200, 185, 155, 0.5);
+  --black: #0a0a0a;
+  --gold: #b8935a;
+  --gold-light: #d4b87a;
+  --gold-ghost: rgba(184, 147, 90, 0.3);
+  --text: #c4bfb6;
+  --text-dim: rgba(196, 191, 182, 0.4);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg-deep);
-  color: var(--text-primary);
+  background: var(--black);
+  color: var(--text);
   font-family: "Noto Serif SC", serif;
-  overflow-x: hidden;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- 星空背景 ---------- */
-.stars {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6), transparent),
-    radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.5), transparent),
-    radial-gradient(1.5px 1.5px at 40% 15%, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.4), transparent),
-    radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.6), transparent),
-    radial-gradient(1.5px 1.5px at 85% 55%, rgba(255,255,255,0.5), transparent),
-    radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.4), transparent),
-    radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,0.3), transparent),
-    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.5), transparent),
-    radial-gradient(1.5px 1.5px at 35% 90%, rgba(255,255,255,0.4), transparent),
-    radial-gradient(1px 1px at 50% 40%, rgba(255,215,0,0.5), transparent),
-    radial-gradient(1px 1px at 80% 70%, rgba(255,215,0,0.4), transparent),
-    radial-gradient(1px 1px at 20% 10%, rgba(255,215,0,0.3), transparent);
-  opacity: 0.7;
-}
-
-/* ---------- Hero ---------- */
-.hero {
+/* ---------- 页码 ---------- */
+.page {
   position: relative;
-  z-index: 1;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
+  overflow: hidden;
 }
 
-.hero-label {
+/* ---------- 扉页 ---------- */
+.cover {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.cover-line {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(transparent, var(--gold-ghost), transparent);
+  margin-bottom: 3rem;
+}
+
+.cover h1 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  color: var(--gold-light);
+  letter-spacing: 0.2em;
+  line-height: 1.1;
+}
+
+.cover-sub {
+  margin-top: 1rem;
   font-size: 0.7rem;
-  letter-spacing: 0.5em;
-  color: var(--gold-dim);
+  letter-spacing: 0.6em;
+  color: var(--gold-ghost);
+}
+
+.cover-note {
+  margin-top: 4rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+}
+
+/* ---------- 展开页 ---------- */
+.spread {
+  flex-direction: row;
+  padding: 5vw;
+  gap: 5vw;
+}
+
+.spread.alt {
+  flex-direction: row-reverse;
+}
+
+.spread-image {
+  flex: 1;
+  max-width: 60%;
+}
+
+.spread.alt .spread-image {
+  text-align: right;
+}
+
+.spread-image img {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  filter: brightness(0.9) contrast(1.05);
+  opacity: 0;
+}
+
+/* ---------- 说明文字 ---------- */
+.spread-caption {
+  flex: 0 0 auto;
+  width: 200px;
+  opacity: 0;
+}
+
+.spread.alt .spread-caption {
+  text-align: right;
+}
+
+.num {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--gold-ghost);
   margin-bottom: 1.5rem;
 }
 
-.hero-title {
-  font-size: clamp(3rem, 10vw, 8rem);
-  font-weight: 900;
-  color: var(--gold-bright);
-  letter-spacing: 0.12em;
-  line-height: 1.1;
-  text-shadow: 0 0 60px rgba(207, 170, 92, 0.3);
+.num.star {
+  color: var(--gold-light);
 }
 
-.hero-sub {
-  margin-top: 1.5rem;
-  font-size: clamp(0.9rem, 2vw, 1.3rem);
-  color: var(--text-dim);
-  letter-spacing: 0.2em;
-}
-
-.hero-scroll {
-  position: absolute;
-  bottom: 3rem;
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  letter-spacing: 0.15em;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); opacity: 0.3; }
-  50% { transform: translateY(8px); opacity: 0.7; }
-}
-
-/* ---------- 群像 ---------- */
-.group-portrait {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 4rem 2rem 8rem;
-}
-
-.group-image {
-  max-width: 1200px;
-  width: 100%;
-  border: 1px solid rgba(207, 170, 92, 0.15);
-  overflow: hidden;
-}
-
-.group-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.group-caption {
-  margin-top: 2rem;
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  letter-spacing: 0.2em;
-}
-
-/* ---------- 画廊 ---------- */
-.gallery {
-  position: relative;
-  z-index: 1;
-  padding: 2rem 2rem 8rem;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.gallery-title {
-  text-align: center;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  font-weight: 900;
-  color: var(--gold);
-  letter-spacing: 0.3em;
-  margin-bottom: 5rem;
-  text-shadow: 0 0 30px rgba(207, 170, 92, 0.2);
-}
-
-/* ---------- 卡片网格 ---------- */
-.saint-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
-}
-
-/* ---------- 卡片 ---------- */
-.saint-card {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  cursor: pointer;
-  border: 1px solid rgba(207, 170, 92, 0.1);
-  transition: border-color 0.5s ease;
-}
-
-.saint-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
-              filter 0.6s ease;
-}
-
-.saint-card:hover img {
-  transform: scale(1.08);
-  filter: brightness(1.1);
-}
-
-.saint-card:hover {
-  border-color: rgba(207, 170, 92, 0.4);
-}
-
-/* 光晕 */
-.card-glow {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(207, 170, 92, 0.2) 0%,
-    transparent 70%
-  );
-  transition: opacity 0.5s ease;
-}
-
-.saint-card:hover .card-glow {
-  opacity: 1;
-}
-
-/* 射手座特殊样式 */
-.saint-card.spotlight {
-  border-color: rgba(207, 170, 92, 0.3);
-  box-shadow: 0 0 40px rgba(207, 170, 92, 0.08);
-}
-
-.saint-card.spotlight .card-number {
-  color: var(--gold-bright);
-}
-
-/* 卡片信息 */
-.card-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  padding: 2.5rem 1.5rem 1.5rem;
-  background: linear-gradient(transparent, rgba(6, 9, 20, 0.9) 40%);
-  pointer-events: none;
-  transform: translateY(10px);
-  transition: transform 0.4s ease;
-}
-
-.saint-card:hover .card-info {
-  transform: translateY(0);
-}
-
-.card-number {
-  display: block;
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  color: var(--gold-dim);
-  margin-bottom: 0.4rem;
-}
-
-.card-info h3 {
-  font-size: 1.3rem;
+.spread-caption h2 {
+  font-size: 1.6rem;
   font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 0.1em;
-  margin-bottom: 0.3rem;
+  color: var(--gold-light);
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  margin-bottom: 0.6rem;
 }
 
-.card-info p {
-  font-size: 0.75rem;
+.spread-caption .en {
+  display: block;
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
   color: var(--text-dim);
-  letter-spacing: 0.05em;
+  margin-top: 0.3rem;
 }
 
-/* ---------- 尾页 ---------- */
-.outro {
-  position: relative;
-  z-index: 1;
-  min-height: 50vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  gap: 2rem;
-}
-
-.outro-text {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: var(--gold-bright);
-  letter-spacing: 0.1em;
-  opacity: 0.7;
-}
-
-.outro-author {
+.spread-caption p {
   font-size: 0.7rem;
   color: var(--text-dim);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+}
+
+/* ---------- 射手座特殊处理 ---------- */
+.hero-spread .spread-image img {
+  filter: brightness(0.95) contrast(1.08) drop-shadow(0 0 60px rgba(184,147,90,0.15));
+}
+
+/* ---------- 末页 ---------- */
+.colophon {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  min-height: 60vh;
+}
+
+.colophon-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(transparent, var(--gold-ghost), transparent);
+  margin-bottom: 2rem;
+}
+
+.colophon p {
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-light);
+}
+
+.colophon .author {
+  margin-top: 2rem;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
 }
 
 /* ---------- 响应式 ---------- */
 @media (max-width: 768px) {
-  .saint-grid {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem;
+  .spread,
+  .spread.alt {
+    flex-direction: column;
+    padding: 3rem 1.5rem;
+    gap: 2rem;
   }
 
-  .group-portrait {
-    padding: 2rem 1rem 4rem;
+  .spread-image {
+    max-width: 100%;
   }
 
-  .gallery {
-    padding: 1rem 1rem 4rem;
+  .spread-caption {
+    width: 100%;
+    text-align: left;
+    padding-left: 0.5rem;
+    border-left: 1px solid var(--gold-ghost);
+  }
+
+  .spread.alt .spread-caption {
+    text-align: left;
+  }
+
+  .spread-caption h2 {
+    font-size: 1.3rem;
   }
 }
 
 /* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: var(--bg-deep); }
-::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--gold-ghost); border-radius: 2px; }
+
+/* ---------- 选中 ---------- */
+::selection { background: var(--gold-ghost); color: var(--black); }
