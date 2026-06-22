@@ -98,47 +98,17 @@
       <div class="temple-content">
         <p class="temple-number">第九宫</p>
         <h3 class="temple-name">射手座 · Sagittarius</h3>
-        <p class="temple-sub">艾俄洛斯 · 黄金之箭</p>
+        <p class="temple-sub">希绪弗斯 · 黄金之箭</p>
       </div>
 
       <div class="sagittarius-scene">
-        <!-- 弓 -->
-        <svg class="bow" viewBox="0 0 200 260">
-          <path class="bow-limbs" d="M100 240 C30 180, 40 50, 100 20 C160 50, 170 180, 100 240Z"
-                fill="none" stroke="url(#goldGradient)" stroke-width="4" />
-          <path class="bow-grip" d="M90 220 L110 220 L108 250 L92 250Z" fill="#b8860b" />
-          <!-- 弓弦 -->
-          <line class="bowstring" x1="55" y1="65" x2="55" y2="205"
-                stroke="rgba(255,215,0,0.6)" stroke-width="1.5" />
-          <defs>
-            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#ffd700" />
-              <stop offset="50%" stop-color="#ffec8b" />
-              <stop offset="100%" stop-color="#daa520" />
-            </linearGradient>
-            <filter id="goldGlow">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-        </svg>
+        <!-- 希绪弗斯角色图 -->
+        <div class="sisyphe-portrait">
+          <img src="assets/sagittarius-sisyphe-lc.jpg" alt="射手座 希绪弗斯" />
+        </div>
 
-        <!-- 箭 -->
-        <svg class="arrow" viewBox="0 0 40 250">
-          <line class="arrow-shaft" x1="20" y1="30" x2="20" y2="240"
-                stroke="#ffd700" stroke-width="2" filter="url(#goldGlow)" />
-          <polygon class="arrow-head" points="20,0 12,30 28,30"
-                   fill="#ffd700" filter="url(#goldGlow)" />
-          <g class="arrow-fletching">
-            <path d="M20 200 L8 220 L20 215Z" fill="#daa520" />
-            <path d="M20 200 L32 220 L20 215Z" fill="#daa520" />
-            <path d="M20 210 L8 230 L20 225Z" fill="#daa520" />
-            <path d="M20 210 L32 230 L20 225Z" fill="#daa520" />
-          </g>
-        </svg>
+        <!-- 金色光晕层 -->
+        <div class="gold-aura"></div>
 
         <!-- 粒子爆发层 -->
         <canvas class="particles-canvas" id="particlesCanvas"></canvas>
