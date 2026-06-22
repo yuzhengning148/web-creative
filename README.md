@@ -37,7 +37,7 @@ web-creative/
 ├── README.md
 ├── LICENSE
 ├── .gitignore
-├── 001-landing-reveal/       # TTTISE Outfit Landing Page
+├── 001-landing-reveal/       # GSAP Preloader + Landing Page
 │   ├── index.html
 │   ├── styles.css
 │   ├── script.js
