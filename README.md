@@ -16,6 +16,18 @@ cd <project-folder>
 npx serve .
 ```
 
+## 声明
+
+- 本仓库代码用于个人学习与技术展示，非盈利用途。
+- `002-anime-warp-slider` 中的动漫图片来源于各画师创作，版权归原作者所有。图片通过 [Wallhaven](https://wallhaven.cc) 收集，仅供学习演示。如需移除，请联系我。
+
+## 致谢
+
+- [GSAP](https://gsap.com) — 动画引擎
+- [Three.js](https://threejs.org) — WebGL 框架
+- [Wallhaven](https://wallhaven.cc) — 图片素材来源
+- 所有原作画师 — 感谢你们的创作
+
 ## 目录结构
 
 ```
