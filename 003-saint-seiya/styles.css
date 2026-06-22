@@ -96,14 +96,12 @@ body {
   max-height: 80vh;
   object-fit: contain;
   filter: brightness(0.9) contrast(1.05);
-  opacity: 0;
 }
 
 /* ---------- 说明文字 ---------- */
 .spread-caption {
   flex: 0 0 auto;
   width: 200px;
-  opacity: 0;
 }
 
 .spread.alt .spread-caption {
