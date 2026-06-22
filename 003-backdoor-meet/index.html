@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backdoor Meet | 咖啡色的猫</title>
+    <meta name="author" content="咖啡色的猫" />
+    <link rel="stylesheet" href="styles.css?v=21" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css" />
+  </head>
+  <body>
+    <!-- ================================================================
+      Loading 遮罩 z:9999
+    ================================================================ -->
+    <div id="loader">
+      <div class="loader-inner">
+        <p class="loader-text">超市后门，灯还亮着。</p>
+        <div class="loader-bar-track">
+          <div class="loader-bar-fill" id="loaderBar"></div>
+        </div>
+        <p class="loader-credit">咖啡色的猫</p>
+      </div>
+    </div>
+
+    <!-- ================================================================
+      第一屏：相遇
+    ================================================================ -->
+    <section class="intro" id="top">
+      <img class="bg-img" data-asset="bgBackdoor" alt="" />
+      <div class="scene-grade"></div>
+      <img class="light-overlay light-overlay-intro" data-asset="doorLightOverlay" alt="" />
+
+      <img class="glow-img glow-bl" data-asset="glow" alt="" />
+      <img class="glow-img glow-br" data-asset="glow" alt="" />
+
+      <img class="smoke-img smoke-intro-left"  data-asset="smoke1" alt="" />
+      <img class="smoke-img smoke-intro-right" data-asset="smoke2" alt="" />
+
+      <img class="ember-img ember-intro" data-asset="ember" alt="" />
+
+      <img class="char char-intro-sasaki" data-asset="sasaki" alt="" />
+      <img class="char char-intro-tayama-close" data-asset="tayamaCloseup" alt="" />
+
+      <div class="hero-copy">
+        <p class="eyebrow" data-config="product.eyebrow"></p>
+        <h1 class="hero-title" data-config="product.title"></h1>
+        <p class="hero-subtitle" data-config="product.subtitle"></p>
+      </div>
+
+      <div class="intro-text">
+        <h1 class="line line-1"></h1>
+        <h1 class="line line-2"></h1>
+      </div>
+
+    </section>
+
+    <!-- ================================================================
+      第二屏
+    ================================================================ -->
+    <section class="spotlight" id="story">
+      <img class="bg-img bg-interior" data-asset="bgInterior" alt="" />
+      <img class="bg-img bg-backdoor-fade" data-asset="bgBackdoor" alt="" />
+      <div class="scene-grade"></div>
+      <img class="glass-overlay" data-asset="glassReflectionOverlay" alt="" />
+
+      <img class="glow-img glow-bl" data-asset="glow" alt="" />
+      <img class="glow-img glow-br" data-asset="glow" alt="" />
+
+      <img class="ember-img ember-spotlight" data-asset="ember" alt="" />
+
+      <img class="char char-spotlight-sasaki" data-asset="sasaki" alt="" />
+      <div class="char-right-stack">
+        <img class="char char-spotlight-yamada" data-asset="yamada" alt="" />
+        <img class="char char-spotlight-tayama" data-asset="tayama" alt="" />
+      </div>
+
+      <div class="portrait-reveal" aria-hidden="true">
+        <div class="portrait-halo"></div>
+        <img class="portrait-img portrait-yamada" data-asset="yamadaCloseup" alt="" />
+        <img class="portrait-img portrait-tayama" data-asset="tayamaCloseup" alt="" />
+        <span class="portrait-line portrait-line-a"></span>
+        <span class="portrait-line portrait-line-b"></span>
+        <span class="portrait-line portrait-line-c"></span>
+        <div class="portrait-wipe"></div>
+      </div>
+
+      <div class="text-overlay spotlight-content-in">
+        <h2></h2>
+        <p></p>
+      </div>
+      <div class="text-overlay spotlight-content-out">
+        <h2></h2>
+        <p></p>
+      </div>
+    </section>
+
+    <!-- ================================================================
+      第三屏：约定
+    ================================================================ -->
+    <section class="outro" id="finale">
+      <img class="bg-img" data-asset="bgBackdoor" alt="" />
+      <div class="scene-grade"></div>
+      <img class="light-overlay light-overlay-outro" data-asset="doorLightOverlay" alt="" />
+      <div class="outro-curtain"></div>
+
+      <img class="glow-img glow-center" id="outroGlowCenter" data-asset="glow" alt="" />
+      <img class="ground-refl" data-asset="groundRefl" alt="" />
+      <img class="smoke-img smoke-outro" id="outroSmokeImg" data-asset="smoke3" alt="" />
+      <img class="ember-img ember-outro" data-asset="ember" alt="" />
+
+      <img class="char char-outro-duo" data-asset="duoCloseup" alt="" />
+
+      <h1 class="outro-title"></h1>
+      <img class="fg-boxes" data-asset="boxes" alt="" />
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="pageConfig.js?v=21"></script>
+    <script src="script.js?v=21"></script>
+  </body>
+</html>
