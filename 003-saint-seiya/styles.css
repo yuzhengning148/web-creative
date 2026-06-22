@@ -1,18 +1,17 @@
 /* ========================================
    圣斗士星矢 冥王神话 — 黄金十二宫
+   唯美画廊展示
    ======================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap");
 
 :root {
-  --cosmic-deep: #0a0e1a;
-  --cosmic-blue: #0d1530;
-  --gold: #ffd700;
-  --gold-dim: #b8860b;
-  --gold-light: #ffec8b;
-  --temple-stone: #1a1520;
-  --text-body: rgba(255, 220, 150, 0.75);
-  --text-dim: rgba(255, 220, 150, 0.35);
+  --bg-deep: #060914;
+  --gold: #cfaa5c;
+  --gold-bright: #f0d68a;
+  --gold-dim: #8b6914;
+  --text-primary: #e8dcc8;
+  --text-dim: rgba(200, 185, 155, 0.5);
 }
 
 * {
@@ -21,283 +20,286 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--cosmic-deep);
-  color: var(--text-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
   font-family: "Noto Serif SC", serif;
   overflow-x: hidden;
 }
 
-/* ---------- Scroll Container ---------- */
-.scroll-container {
-  position: relative;
+/* ---------- 星空背景 ---------- */
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 40% 15%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 85% 55%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 35% 90%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 50% 40%, rgba(255,215,0,0.5), transparent),
+    radial-gradient(1px 1px at 80% 70%, rgba(255,215,0,0.4), transparent),
+    radial-gradient(1px 1px at 20% 10%, rgba(255,215,0,0.3), transparent);
+  opacity: 0.7;
 }
 
-/* ---------- Temple Section ---------- */
-.temple {
+/* ---------- Hero ---------- */
+.hero {
   position: relative;
-  width: 100%;
-  height: 100vh;
+  z-index: 1;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-}
-
-/* 深空星光背景 */
-.temple::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 50%, rgba(20, 40, 80, 0.6), transparent 70%),
-    radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.6), transparent),
-    radial-gradient(1px 1px at 50% 10%, rgba(255, 255, 255, 0.5), transparent),
-    radial-gradient(1px 1px at 70% 60%, rgba(255, 255, 255, 0.4), transparent),
-    radial-gradient(1px 1px at 30% 80%, rgba(255, 255, 255, 0.5), transparent),
-    radial-gradient(1px 1px at 80% 20%, rgba(255, 255, 255, 0.3), transparent),
-    radial-gradient(1.5px 1.5px at 45% 55%, rgba(255, 215, 0, 0.4), transparent),
-    radial-gradient(1px 1px at 15% 45%, rgba(255, 255, 255, 0.4), transparent),
-    radial-gradient(1px 1px at 85% 75%, rgba(255, 255, 255, 0.5), transparent),
-    radial-gradient(1px 1px at 60% 40%, rgba(255, 255, 255, 0.3), transparent);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* 宫门装饰线 */
-.temple::after {
-  content: "";
-  position: absolute;
-  top: 3rem;
-  bottom: 3rem;
-  left: 8%;
-  right: 8%;
-  border: 1px solid rgba(255, 215, 0, 0.08);
-  border-radius: 1px;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.temple-content {
-  position: relative;
-  z-index: 2;
   text-align: center;
   padding: 2rem;
 }
 
-/* ---------- Typography ---------- */
-.chapter-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.4em;
-  color: var(--text-dim);
+.hero-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.5em;
+  color: var(--gold-dim);
   margin-bottom: 1.5rem;
 }
 
-.temple-number {
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
-  color: var(--gold-dim);
-  margin-bottom: 1rem;
-}
-
-.temple-name {
-  font-size: clamp(2rem, 5vw, 4rem);
+.hero-title {
+  font-size: clamp(3rem, 10vw, 8rem);
   font-weight: 900;
-  color: var(--gold);
-  text-shadow: 0 0 40px rgba(255, 215, 0, 0.3), 0 0 80px rgba(255, 215, 0, 0.1);
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
-}
-
-.temple-sub {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: var(--gold-light);
-  letter-spacing: 0.1em;
-}
-
-.temple-soon {
-  font-size: 1rem;
-  color: var(--text-dim);
-  letter-spacing: 0.1em;
-  font-style: italic;
-}
-
-.scroll-hint {
-  margin-top: 3rem;
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  letter-spacing: 0.15em;
-  animation: pulse-text 2.5s ease-in-out infinite;
-}
-
-/* ---------- Hero ---------- */
-.hero .title-main {
-  font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 900;
-  color: var(--gold);
-  text-shadow: 0 0 60px rgba(255, 215, 0, 0.4), 0 0 120px rgba(255, 215, 0, 0.15);
-  letter-spacing: 0.15em;
+  color: var(--gold-bright);
+  letter-spacing: 0.12em;
   line-height: 1.1;
+  text-shadow: 0 0 60px rgba(207, 170, 92, 0.3);
 }
 
-.hero .title-sub {
-  font-size: clamp(1.2rem, 3vw, 2.5rem);
-  font-weight: 600;
-  color: var(--gold-light);
-  letter-spacing: 0.3em;
-  margin-top: 0.5rem;
+.hero-sub {
+  margin-top: 1.5rem;
+  font-size: clamp(0.9rem, 2vw, 1.3rem);
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
 }
 
-/* ---------- Sagittarius 射手座核心区 ---------- */
-.sagittarius {
-  background: radial-gradient(ellipse at 50% 50%, rgba(30, 20, 5, 0.8), var(--cosmic-deep) 80%);
-}
-
-.sagittarius-scene {
+.hero-scroll {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 900px;
-  height: 85vh;
-  z-index: 1;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  bottom: 3rem;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+  animation: float 3s ease-in-out infinite;
 }
 
-/* 希绪弗斯角色图 */
-.sisyphe-portrait {
+@keyframes float {
+  0%, 100% { transform: translateY(0); opacity: 0.3; }
+  50% { transform: translateY(8px); opacity: 0.7; }
+}
+
+/* ---------- 群像 ---------- */
+.group-portrait {
   position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-.sisyphe-portrait img {
-  max-width: 85%;
-  max-height: 85%;
-  object-fit: contain;
-  filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.25));
-  will-change: transform, filter;
-}
-
-/* 金色光晕 */
-.gold-aura {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 60%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
   z-index: 1;
-  pointer-events: none;
-  will-change: transform, opacity;
-}
-
-/* 星座图 */
-.constellation {
-  position: absolute;
-  bottom: 5%;
-  right: 8%;
-  width: 200px;
-  height: 200px;
-  opacity: 0.4;
-  z-index: 2;
-}
-
-/* 粒子 Canvas */
-.particles-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  pointer-events: none;
-}
-
-/* 滚动提示 */
-.draw-hint {
-  position: absolute;
-  bottom: 5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
+  padding: 4rem 2rem 8rem;
+}
+
+.group-image {
+  max-width: 1200px;
+  width: 100%;
+  border: 1px solid rgba(207, 170, 92, 0.15);
+  overflow: hidden;
+}
+
+.group-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.group-caption {
+  margin-top: 2rem;
+  font-size: 0.85rem;
   color: var(--text-dim);
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
+}
+
+/* ---------- 画廊 ---------- */
+.gallery {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 2rem 8rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  margin-bottom: 5rem;
+  text-shadow: 0 0 30px rgba(207, 170, 92, 0.2);
+}
+
+/* ---------- 卡片网格 ---------- */
+.saint-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+/* ---------- 卡片 ---------- */
+.saint-card {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(207, 170, 92, 0.1);
+  transition: border-color 0.5s ease;
+}
+
+.saint-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
+              filter 0.6s ease;
+}
+
+.saint-card:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+.saint-card:hover {
+  border-color: rgba(207, 170, 92, 0.4);
+}
+
+/* 光晕 */
+.card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(207, 170, 92, 0.2) 0%,
+    transparent 70%
+  );
   transition: opacity 0.5s ease;
 }
 
-.hint-arrow {
-  font-size: 1.2rem;
-  animation: bounce-arrow 1.5s ease-in-out infinite;
+.saint-card:hover .card-glow {
+  opacity: 1;
 }
 
-.hint-arrow:last-child {
-  animation-delay: 0.75s;
+/* 射手座特殊样式 */
+.saint-card.spotlight {
+  border-color: rgba(207, 170, 92, 0.3);
+  box-shadow: 0 0 40px rgba(207, 170, 92, 0.08);
 }
 
-/* ---------- Finale ---------- */
-.finale .temple-soon {
-  font-size: 1.2rem;
-  color: var(--gold-dim);
+.saint-card.spotlight .card-number {
+  color: var(--gold-bright);
 }
 
-/* ---------- Global Footer ---------- */
-.global-footer {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 2rem;
-  z-index: 10;
-  font-size: 0.7rem;
-  color: rgba(255, 215, 0, 0.2);
-  letter-spacing: 0.08em;
+/* 卡片信息 */
+.card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 2.5rem 1.5rem 1.5rem;
+  background: linear-gradient(transparent, rgba(6, 9, 20, 0.9) 40%);
   pointer-events: none;
+  transform: translateY(10px);
+  transition: transform 0.4s ease;
 }
 
-/* ---------- Animations ---------- */
-@keyframes pulse-text {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.7; }
+.saint-card:hover .card-info {
+  transform: translateY(0);
 }
 
-@keyframes bounce-arrow {
-  0%, 100% { transform: translateY(0); opacity: 0.3; }
-  50% { transform: translateY(6px); opacity: 0.7; }
+.card-number {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--gold-dim);
+  margin-bottom: 0.4rem;
 }
 
-@keyframes arrow-release {
-  0% { transform: translate(-50%, -50%) rotate(0deg); opacity: 1; }
-  100% { transform: translate(-50%, -200%) rotate(-15deg); opacity: 0; }
+.card-info h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
 }
 
-@keyframes golden-burst {
-  0% { filter: drop-shadow(0 0 20px rgba(255,215,0,0.8)); }
-  100% { filter: drop-shadow(0 0 120px rgba(255,215,0,0)); }
+.card-info p {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+
+/* ---------- 尾页 ---------- */
+.outro {
+  position: relative;
+  z-index: 1;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.outro-text {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: var(--gold-bright);
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.outro-author {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 768px) {
+  .saint-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .group-portrait {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .gallery {
+    padding: 1rem 1rem 4rem;
+  }
 }
 
 /* ---------- Scrollbar ---------- */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: var(--cosmic-deep);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--gold-dim);
-  border-radius: 2px;
-}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
