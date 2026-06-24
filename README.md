@@ -8,7 +8,7 @@
 
 | # | 项目 | 技术栈 | 说明 |
 |---|------|--------|------|
-| 001 | landing-reveal | GSAP + HTML/CSS | 服装品牌登陆页，预加载图片轮播 + 文字入场动画 |
+| 001 | landing-reveal | GSAP + HTML/CSS | 咖啡色的猫 Portfolio，预加载渐变动画 + 文字入场特效 |
 | 002 | anime-warp-slider | Three.js + GLSL + GSAP | 动漫海报 WebGL 透镜变形滑动切换 |
 
 ## 运行
@@ -34,14 +34,15 @@ npx serve .
 
 ```
 web-creative/
-╤── README.md
-╤── LICENSE
-╤── .gitignore
-╤── 001-landing-reveal/       # GSAP Preloader + Landing Page
-│   └── index.html
-│   └── styles.css
-│   └── script.js
-│   └── assets/
+├── README.md
+├── LICENSE
+├── .gitignore
+├── 001-landing-reveal/       # GSAP Preloader + Hero Landing (咖啡色的猫)
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│   └── src/
+│       └── images/
 ├── 002-anime-warp-slider/    # Anime Poster Warp Slider
 │   ├── index.html
 │   ├── styles.css
