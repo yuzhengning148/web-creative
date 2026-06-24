@@ -10,7 +10,6 @@
 |---|------|--------|------|
 | 001 | landing-reveal | GSAP + HTML/CSS | 服装品牌登陆页，预加载图片轮播 + 文字入场动画 |
 | 002 | anime-warp-slider | Three.js + GLSL + GSAP | 动漫海报 WebGL 透镜变形滑动切换 |
-| 003 | saint-seiya | GSAP ScrollTrigger + Canvas | 圣斗士星矢冥王神话，滚轮拉弓交互体验 |
 
 ## 运行
 
@@ -35,13 +34,13 @@ npx serve .
 
 ```
 web-creative/
-├── README.md
-├── LICENSE
-├── .gitignore
-├── 001-landing-reveal/       # GSAP Preloader + Landing Page
-│   ├── index.html
-│   ├── styles.css
-│   ├── script.js
+╤── README.md
+╤── LICENSE
+╤── .gitignore
+╤── 001-landing-reveal/       # GSAP Preloader + Landing Page
+│   └── index.html
+│   └── styles.css
+│   └── script.js
 │   └── assets/
 ├── 002-anime-warp-slider/    # Anime Poster Warp Slider
 │   ├── index.html
@@ -50,10 +49,9 @@ web-creative/
 │   ├── shaders.js
 │   ├── slides.js
 │   └── assets/
-├── 003-saint-seiya/          # Saint Seiya — Lost Canvas
+├── 003-backdoor-meet/        # ...
 │   ├── index.html
 │   ├── styles.css
 │   ├── script.js
 │   └── assets/
-└── ...
 ```
