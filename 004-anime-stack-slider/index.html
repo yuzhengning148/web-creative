@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANIME × SLIDER | EVA × JJK</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- 扫描线叠加 -->
+    <div class="scanlines"></div>
+
+    <!-- EVA 风格六角形装饰 -->
+    <div class="eva-hex-decoration">
+        <div class="hex hex-1"></div>
+        <div class="hex hex-2"></div>
+        <div class="hex hex-3"></div>
+    </div>
+
+    <!-- EVA 风格警告条纹顶部 -->
+    <div class="warning-stripe warning-stripe--top"></div>
+    <div class="warning-stripe warning-stripe--bottom"></div>
+
+    <!-- 日文装饰文字 -->
+    <div class="jp-decoration">
+        <span class="jp-vertical jp-left">新世紀エヴァンゲリオン</span>
+        <span class="jp-vertical jp-right">呪術廻戦</span>
+    </div>
+
+    <section class="slider">
+        <div class="slide-info">
+            <div class="slide-info__left">
+                <span class="slide-category">// ANIME ARCHIVE</span>
+                <p id="slide-title"></p>
+            </div>
+            <div class="slide-info__right">
+                <p id="slide-count"></p>
+                <span class="slide-kana" id="slide-kana"></span>
+            </div>
+        </div>
+        <canvas></canvas>
+    </section>
+
+    <!-- 底部 EVA 风格状态栏 -->
+    <div class="status-bar">
+        <span>SYSTEM: NORMAL</span>
+        <span class="status-dot"></span>
+        <span>IMG_ARCHIVE: ACTIVE</span>
+        <span class="status-dot"></span>
+        <span id="status-slide">CURRENT: 01</span>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

@@ -10,6 +10,8 @@
 |---|------|--------|------|
 | 001 | landing-reveal | GSAP + HTML/CSS | 咖啡色的猫 Portfolio，预加载渐变动画 + 文字入场特效 |
 | 002 | anime-warp-slider | Three.js + GLSL + GSAP | 动漫海报 WebGL 透镜变形滑动切换 |
+| 003 | backdoor-meet | — | — |
+| 004 | anime-stack-slider | Three.js + HTML/CSS | EVA × 咒术回战 动漫壁纸 3D 堆叠轮播，速度驱动扭曲动效 + 磁性吸附 |
 
 ## 运行
 
@@ -21,7 +23,7 @@ npx serve .
 ## 声明
 
 - 本仓库代码用于个人学习与技术展示，非盈利用途。
-- `002-anime-warp-slider` 中的动漫图片来源于各画师创作，版权归原作者所有。图片通过 [Wallhaven](https://wallhaven.cc) 收集，仅供学习演示。如需移除，请联系我。
+- `002-anime-warp-slider`、`004-anime-stack-slider` 中的动漫图片来源于各画师创作，版权归原作者所有。图片通过 [Wallhaven](https://wallhaven.cc) 收集，仅供学习演示。如需移除，请联系我。
 
 ## 致谢
 
@@ -51,6 +53,11 @@ web-creative/
 │   ├── slides.js
 │   └── assets/
 ├── 003-backdoor-meet/        # ...
+│   ├── index.html
+│   ├── styles.css
+│   ├── script.js
+│   └── assets/
+├── 004-anime-stack-slider/   # EVA × JJK 3D Stack Slider
 │   ├── index.html
 │   ├── styles.css
 │   ├── script.js
