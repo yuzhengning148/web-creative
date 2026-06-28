@@ -12,10 +12,15 @@
   --jjk-blue-dim: rgba(74, 144, 217, 0.1);
   --jjk-red: #c41e3a;
   --bg-deep: #07060a;
-  --bg-card: #0d0c13;
   --text-primary: #e8e6f0;
   --text-dim: rgba(232, 230, 240, 0.45);
   --warning-yellow: #f5a623;
+
+  /* JS-controlled dynamic properties */
+  --hex-rotate: 0deg;
+  --stripe-top-opacity: 0.25;
+  --stripe-bottom-opacity: 0.25;
+  --scanline-opacity: 0;
 }
 
 /* === RESET === */
@@ -25,7 +30,6 @@
   box-sizing: border-box;
 }
 
-/* === BODY === */
 body {
   background: var(--bg-deep);
   font-family: "PP Neue Montreal", "Noto Sans JP", sans-serif;
@@ -33,55 +37,74 @@ body {
   cursor: default;
 }
 
-/* === SCANLINES OVERLAY (EVA CRT effect) === */
+/* ============================================
+   SCANLINES — only visible on canvas hover
+   ============================================ */
 .scanlines {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   pointer-events: none;
   z-index: 10;
   background: repeating-linear-gradient(
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
   );
-  opacity: 0.4;
+  opacity: var(--scanline-opacity);
+  transition: opacity 0.5s ease;
 }
 
-/* === EVA HEXAGON DECORATIVE === */
+/* ============================================
+   EVA HEXAGONS — rotate on slide change
+   ============================================ */
 .eva-hex-decoration {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.06;
+  opacity: 0.14;
 }
 
 .hex {
   position: absolute;
-  width: 120px;
-  height: 104px;
   border: 1.5px solid var(--eva-green);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transform: rotate(var(--hex-rotate));
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hex-1 { top: 6%; right: 8%; }
-.hex-2 { bottom: 12%; left: 5%; width: 80px; height: 69px; }
-.hex-3 { top: 40%; right: 15%; width: 60px; height: 52px; opacity: 0.5; }
+.hex-1 {
+  top: 6%; right: 8%;
+  width: 150px; height: 130px;
+  border-color: var(--eva-green);
+  transition-delay: 0s;
+}
+.hex-2 {
+  bottom: 14%; left: 5%;
+  width: 100px; height: 87px;
+  border-color: var(--eva-purple);
+  transition-delay: 0.1s;
+}
+.hex-3 {
+  top: 40%; right: 12%;
+  width: 70px; height: 61px;
+  border-color: var(--jjk-blue);
+  opacity: 0.6;
+  transition-delay: 0.2s;
+}
 
-/* === EVA WARNING STRIPES === */
+/* ============================================
+   WARNING STRIPES — brighten at stack edges
+   ============================================ */
 .warning-stripe {
   position: fixed;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 4px;
   z-index: 8;
   pointer-events: none;
   background: repeating-linear-gradient(
@@ -91,19 +114,28 @@ body {
     var(--bg-deep) 18px,
     var(--bg-deep) 36px
   );
-  opacity: 0.5;
+  transition: opacity 0.4s ease, box-shadow 0.4s ease;
 }
 
-.warning-stripe--top { top: 0; }
-.warning-stripe--bottom { bottom: 0; }
+.warning-stripe--top {
+  top: 0;
+  opacity: var(--stripe-top-opacity);
+  box-shadow: 0 0 20px rgba(245, 166, 35, calc(var(--stripe-top-opacity) * 2));
+}
 
-/* === JAPANESE DECORATIVE TEXT === */
+.warning-stripe--bottom {
+  bottom: 0;
+  opacity: var(--stripe-bottom-opacity);
+  box-shadow: 0 0 20px rgba(245, 166, 35, calc(var(--stripe-bottom-opacity) * 2));
+}
+
+/* ============================================
+   JAPANESE DECORATIVE TEXT
+   ============================================ */
 .jp-decoration {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   pointer-events: none;
   z-index: 1;
 }
@@ -118,14 +150,15 @@ body {
   letter-spacing: 0.6em;
   writing-mode: vertical-rl;
   color: var(--eva-green);
-  opacity: 0.08;
-  text-transform: uppercase;
+  opacity: 0.12;
 }
 
-.jp-left { left: 1.2rem; }
-.jp-right { right: 1.2rem; }
+.jp-left  { left: 1.4rem; }
+.jp-right { right: 1.4rem; }
 
-/* === SECTION === */
+/* ============================================
+   SECTION & CANVAS
+   ============================================ */
 section {
   position: relative;
   width: 100%;
@@ -133,19 +166,18 @@ section {
   overflow: hidden;
 }
 
-/* === CANVAS === */
 canvas {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   overflow: hidden;
   z-index: 0;
   user-select: none;
 }
 
-/* === SLIDE INFO OVERLAY === */
+/* ============================================
+   SLIDE INFO OVERLAY
+   ============================================ */
 .slide-info {
   position: absolute;
   bottom: 3.5rem;
@@ -171,7 +203,7 @@ canvas {
   font-weight: 500;
   letter-spacing: 0.25em;
   color: var(--eva-green);
-  opacity: 0.7;
+  opacity: 0.75;
   text-transform: uppercase;
 }
 
@@ -182,7 +214,21 @@ canvas {
   color: var(--text-primary);
   line-height: 1.05;
   text-shadow: 0 0 60px rgba(139, 0, 255, 0.25);
-  transition: color 0.3s ease;
+}
+
+/* --- Glitch: only when .glitching class is active --- */
+#slide-title.glitching {
+  animation: glitch-burst 0.3s ease-out;
+}
+
+@keyframes glitch-burst {
+  0%   { transform: translate(0); }
+  15%  { transform: translate(-3px, 2px); color: var(--eva-green); }
+  30%  { transform: translate(3px, -2px); color: var(--eva-purple); }
+  45%  { transform: translate(-2px, -1px); }
+  60%  { transform: translate(2px, 1px); color: var(--eva-green); }
+  75%  { transform: translate(-1px, -2px); }
+  100% { transform: translate(0); color: var(--text-primary); }
 }
 
 .slide-info__right {
@@ -209,7 +255,9 @@ canvas {
   color: var(--text-dim);
 }
 
-/* === EVA STATUS BAR (bottom) === */
+/* ============================================
+   EVA STATUS BAR — shows real FPS + slide
+   ============================================ */
 .status-bar {
   position: fixed;
   bottom: 0.6rem;
@@ -224,8 +272,16 @@ canvas {
   font-weight: 500;
   letter-spacing: 0.18em;
   color: var(--eva-green);
-  opacity: 0.5;
+  opacity: 0.7;
   pointer-events: none;
+}
+
+.status-bar .fps-warning {
+  color: var(--warning-yellow);
+}
+
+.status-bar .fps-critical {
+  color: var(--jjk-red);
 }
 
 .status-dot {
@@ -241,20 +297,23 @@ canvas {
   50% { opacity: 1; }
 }
 
-/* === GLITCH TEXT ANIMATION (occasional on title) === */
-@keyframes glitch {
-  0%, 90%, 100% { transform: translate(0); }
-  92% { transform: translate(-2px, 1px); }
-  94% { transform: translate(2px, -1px); }
-  96% { transform: translate(-1px, -1px); }
-  98% { transform: translate(1px, 1px); }
+/* ============================================
+   EDGE GLOW — subtle ambient energy
+   ============================================ */
+section::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 120px 40px rgba(139, 0, 255, 0.07),
+    inset 0 0 40px 20px rgba(57, 255, 20, 0.04);
 }
 
-#slide-title {
-  animation: glitch 4s infinite;
-}
-
-/* === RESPONSIVE === */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 768px) {
   .slide-info {
     padding: 0 1.2rem;
@@ -269,25 +328,16 @@ canvas {
   }
 
   .jp-vertical {
-    font-size: 0.75rem;
-    letter-spacing: 0.4em;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
   }
 
-  .jp-left { left: 0.4rem; }
-  .jp-right { right: 0.4rem; }
+  .jp-left  { left: 0.3rem; }
+  .jp-right { right: 0.3rem; }
 
   .warning-stripe { height: 2px; }
-  .status-bar { left: 1.2rem; right: 1.2rem; font-size: 0.5rem; }
-}
-
-/* === EDGE GLOW (EVA energy effect) === */
-section::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  box-shadow:
-    inset 0 0 120px 40px rgba(139, 0, 255, 0.04),
-    inset 0 0 40px 20px rgba(57, 255, 20, 0.02);
+  .status-bar { left: 1.2rem; right: 1.2rem; font-size: 0.48rem; }
+  .hex-1 { width: 100px; height: 87px; }
+  .hex-2 { width: 60px; height: 52px; }
+  .hex-3 { display: none; }
 }

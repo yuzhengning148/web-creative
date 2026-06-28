@@ -2,56 +2,16 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.171.0/build/three.m
 
 // === ANIME-THEMED SLIDES (EVA × JJK) ===
 const slides = [
-    {
-        name: "A.T. Field",
-        kana: "エーティーフィールド",
-        img: "assets/img1.jpg",
-    },
-    {
-        name: "NERV HQ",
-        kana: "ネルフ本部",
-        img: "assets/img2.jpg",
-    },
-    {
-        name: "Third Impact",
-        kana: "サードインパクト",
-        img: "assets/img3.jpg",
-    },
-    {
-        name: "Angel Attack",
-        kana: "使徒、来襲",
-        img: "assets/img4.jpg",
-    },
-    {
-        name: "Beast Mode",
-        kana: "暴走モード",
-        img: "assets/img5.jpg",
-    },
-    {
-        name: "Domain Expansion",
-        kana: "領域展開",
-        img: "assets/img6.jpg",
-    },
-    {
-        name: "Hollow Purple",
-        kana: "虚式「茈」",
-        img: "assets/img7.jpg",
-    },
-    {
-        name: "Black Flash",
-        kana: "黒閃",
-        img: "assets/img8.jpg",
-    },
-    {
-        name: "Cursed Energy",
-        kana: "呪力",
-        img: "assets/img9.jpg",
-    },
-    {
-        name: "Infinite Void",
-        kana: "無量空処",
-        img: "assets/img10.jpg",
-    },
+    { name: "A.T. Field",       kana: "エーティーフィールド", img: "/img1.jpg"  },
+    { name: "NERV HQ",          kana: "ネルフ本部",           img: "/img2.jpg"  },
+    { name: "Third Impact",     kana: "サードインパクト",     img: "/img3.jpg"  },
+    { name: "Angel Attack",     kana: "使徒、来襲",           img: "/img4.jpg"  },
+    { name: "Beast Mode",       kana: "暴走モード",           img: "/img5.jpg"  },
+    { name: "Domain Expansion", kana: "領域展開",             img: "/img6.jpg"  },
+    { name: "Hollow Purple",    kana: "虚式「茈」",           img: "/img7.jpg"  },
+    { name: "Black Flash",      kana: "黒閃",                img: "/img8.jpg"  },
+    { name: "Cursed Energy",    kana: "呪力",                img: "/img9.jpg"  },
+    { name: "Infinite Void",    kana: "無量空処",             img: "/img10.jpg" },
 ];
 
 // === CONFIG ===
@@ -79,6 +39,8 @@ const titleElement = document.querySelector("p#slide-title");
 const counterElement = document.querySelector("p#slide-count");
 const kanaElement = document.querySelector("#slide-kana");
 const statusSlideElement = document.querySelector("#status-slide");
+const statusFrameElement = document.querySelector("#status-frame");
+const root = document.documentElement;
 
 // === THREE.JS SETUP ===
 const renderer = new THREE.WebGLRenderer({
@@ -109,8 +71,7 @@ const totalSlides = slides.length;
 
 const slideHeights = Array.from(
     { length: totalSlides },
-    () =>
-        config.minHeight + Math.random() * (config.maxHeight - config.minHeight)
+    () => config.minHeight + Math.random() * (config.maxHeight - config.minHeight)
 );
 
 const slideOffsets = [];
@@ -159,23 +120,20 @@ for (let i = 0; i < totalSlides; i++) {
         material.color.set(0xffffff);
         material.needsUpdate = true;
 
-        // 淡入动画: 纹理加载完成后平滑显示
+        // Fade-in animation
         const start = performance.now();
         const fadeIn = (time) => {
             const elapsed = (time - start) / 1000;
             const progress = Math.min(1, elapsed / 0.5);
             material.opacity = progress;
-            if (progress < 1) {
-                requestAnimationFrame(fadeIn);
-            }
+            if (progress < 1) requestAnimationFrame(fadeIn);
         };
         requestAnimationFrame(fadeIn);
 
-        // 适配宽高比
+        // Aspect ratio fit
         const imageAspect = texture.image.width / texture.image.height;
         const planeAspect = width / height;
         const ratio = imageAspect / planeAspect;
-
         if (ratio > 1) mesh.scale.y = 1 / ratio;
         else mesh.scale.x = ratio;
     });
@@ -184,7 +142,7 @@ for (let i = 0; i < totalSlides; i++) {
     meshes.push(mesh);
 }
 
-// === DISTORTION (velocity-driven card bend) ===
+// === DISTORTION ===
 function applyDistortion(mesh, positionY, strength) {
     const positions = mesh.geometry.attributes.position;
     const original = mesh.userData.originalVertices;
@@ -192,7 +150,6 @@ function applyDistortion(mesh, positionY, strength) {
     for (let i = 0; i < positions.count; i++) {
         const x = original[i * 3];
         const y = original[i * 3 + 1];
-
         const distance = Math.sqrt(x * x + (positionY + y) ** 2);
         const falloff = Math.max(0, 1 - distance / 2);
         const bend = Math.pow(Math.sin((falloff * Math.PI) / 2), 1.5);
@@ -225,62 +182,102 @@ let touchLastY = 0;
 
 let activeSlideIndex = -1;
 
+// === FPS TRACKING ===
+let fpsFrames = 0;
+let fpsLastCheck = 0;
+let currentFPS = 60;
+
+// === GLITCH STATE ===
+let glitchTimeout = null;
+
 const addDistortionBurst = (amount) => {
     distortionTarget = Math.min(1, distortionTarget + amount);
 };
 
-// === INPUT HANDLERS ===
+// ==========================================
+// TRIGGER: slide-change effects
+// ==========================================
+function triggerSlideChangeEffects() {
+    // 1. Glitch the title
+    if (glitchTimeout) clearTimeout(glitchTimeout);
+    titleElement.classList.add("glitching");
+    glitchTimeout = setTimeout(() => {
+        titleElement.classList.remove("glitching");
+    }, 350);
+
+    // 2. Rotate hexagons
+    const rotation = Math.random() > 0.5 ? 15 : -15;
+    root.style.setProperty("--hex-rotate", `${rotation}deg`);
+    setTimeout(() => {
+        root.style.setProperty("--hex-rotate", "0deg");
+    }, 900);
+}
+
+// ==========================================
+// TRIGGER: warning stripe at stack edges
+// ==========================================
+function updateWarningStripes() {
+    // Calculate how close we are to the "top" and "bottom" of the loop
+    // The loop wraps, so "edges" are the points furthest from center
+    const posInLoop = wrap(scrollPosition, loopLength);
+    const distFromCenter = Math.abs(posInLoop - halfLoop);
+    const edgeProximity = 1 - distFromCenter / halfLoop; // 0=center, 1=edge
+
+    // Brighten stripes near edges (using a smooth threshold)
+    const threshold = 0.7;
+    const topIntensity = Math.max(0, (edgeProximity - threshold) / (1 - threshold));
+    const bottomIntensity = topIntensity; // symmetric in a loop
+
+    const baseOpacity = 0.25;
+    const maxOpacity = 1.0;
+    root.style.setProperty("--stripe-top-opacity", (baseOpacity + topIntensity * (maxOpacity - baseOpacity)).toFixed(3));
+    root.style.setProperty("--stripe-bottom-opacity", (baseOpacity + bottomIntensity * (maxOpacity - baseOpacity)).toFixed(3));
+}
+
+// ==========================================
+// CANVAS HOVER → scanlines
+// ==========================================
+canvas.addEventListener("mouseenter", () => {
+    root.style.setProperty("--scanline-opacity", "1");
+});
+
+canvas.addEventListener("mouseleave", () => {
+    root.style.setProperty("--scanline-opacity", "0");
+});
+
+// ==========================================
+// INPUT HANDLERS
+// ==========================================
 
 // Mouse Wheel
-window.addEventListener(
-    "wheel",
-    (e) => {
-        e.preventDefault();
+window.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    const clampedDelta = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), config.wheelMax);
+    addDistortionBurst(Math.abs(clampedDelta) * 0.001);
+    scrollTarget += clampedDelta * config.wheelSpeed;
+    isScrolling = true;
+    clearTimeout(window._scrollTimeout);
+    window._scrollTimeout = setTimeout(() => (isScrolling = false), 150);
+}, { passive: false });
 
-        const clampedDelta =
-            Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), config.wheelMax);
+// Touch
+window.addEventListener("touchstart", (e) => {
+    touchStartY = touchLastY = e.touches[0].clientY;
+    isScrolling = false;
+    scrollMomentum = 0;
+}, { passive: false });
 
-        addDistortionBurst(Math.abs(clampedDelta) * 0.001);
-        scrollTarget += clampedDelta * config.wheelSpeed;
-        isScrolling = true;
+window.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    const deltaY = e.touches[0].clientY - touchLastY;
+    touchLastY = e.touches[0].clientY;
+    addDistortionBurst(Math.abs(deltaY) * 0.02);
+    scrollTarget -= deltaY * config.touchSpeed;
+    isScrolling = true;
+}, { passive: false });
 
-        clearTimeout(window._scrollTimeout);
-        window._scrollTimeout = setTimeout(() => (isScrolling = false), 150);
-    },
-    { passive: false }
-);
-
-// Touch Start
-window.addEventListener(
-    "touchstart",
-    (e) => {
-        touchStartY = touchLastY = e.touches[0].clientY;
-        isScrolling = false;
-        scrollMomentum = 0;
-    },
-    { passive: false }
-);
-
-// Touch Move
-window.addEventListener(
-    "touchmove",
-    (e) => {
-        e.preventDefault();
-
-        const deltaY = e.touches[0].clientY - touchLastY;
-        touchLastY = e.touches[0].clientY;
-
-        addDistortionBurst(Math.abs(deltaY) * 0.02);
-        scrollTarget -= deltaY * config.touchSpeed;
-        isScrolling = true;
-    },
-    { passive: false }
-);
-
-// Touch End
 window.addEventListener("touchend", () => {
     const swipeVelocity = (touchLastY - touchStartY) * 0.005;
-
     if (Math.abs(swipeVelocity) > 0.5) {
         scrollMomentum = -swipeVelocity * config.touchMomentum;
         addDistortionBurst(Math.abs(swipeVelocity) * 0.45);
@@ -302,11 +299,9 @@ window.addEventListener("mousedown", (e) => {
 
 window.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
-
     const deltaY = e.clientY - dragStartY;
     dragStartY = e.clientY;
     dragDelta = deltaY;
-
     addDistortionBurst(Math.abs(deltaY) * 0.02);
     scrollTarget -= deltaY * config.dragSpeed;
     isScrolling = true;
@@ -314,10 +309,8 @@ window.addEventListener("mousemove", (e) => {
 
 window.addEventListener("mouseup", () => {
     if (!isDragging) return;
-
     isDragging = false;
     canvas.style.cursor = "grab";
-
     if (Math.abs(dragDelta) > 2) {
         scrollMomentum = -dragDelta * config.dragMomentum;
         addDistortionBurst(Math.abs(dragDelta) * 0.005);
@@ -326,7 +319,7 @@ window.addEventListener("mouseup", () => {
     }
 });
 
-// Keyboard Navigation (Arrow Keys)
+// Keyboard
 window.addEventListener("keydown", (e) => {
     if (e.key === "ArrowDown" || e.key === "ArrowUp") {
         e.preventDefault();
@@ -346,7 +339,7 @@ window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// === SNAP-TO-SLIDE (magnetic settle after scrolling stops) ===
+// === SNAP-TO-SLIDE ===
 function snapToNearestSlide() {
     if (isScrolling) return;
 
@@ -356,22 +349,18 @@ function snapToNearestSlide() {
     for (let i = 0; i < totalSlides; i++) {
         const offset = slideOffsets[i];
         const dist = Math.abs(wrap(scrollPosition - offset + halfLoop, loopLength) - halfLoop);
-
         if (dist < nearestDist) {
             nearestDist = dist;
             nearestOffset = offset;
         }
     }
 
-    // Gentle magnetic pull to nearest slide
     const currentWrapped = wrap(scrollPosition, loopLength);
     const targetWrapped = wrap(nearestOffset, loopLength);
     let diff = targetWrapped - currentWrapped;
-
     if (Math.abs(diff) > loopLength / 2) {
         diff = diff > 0 ? diff - loopLength : diff + loopLength;
     }
-
     if (Math.abs(diff) > 0.001) {
         scrollTarget += diff * 0.08;
     }
@@ -380,6 +369,15 @@ function snapToNearestSlide() {
 // === ANIMATION LOOP ===
 function animate(time) {
     requestAnimationFrame(animate);
+
+    // --- FPS ---
+    fpsFrames++;
+    if (time - fpsLastCheck >= 500) {
+        currentFPS = Math.round((fpsFrames / (time - fpsLastCheck)) * 1000);
+        fpsFrames = 0;
+        fpsLastCheck = time;
+        updateStatusBar();
+    }
 
     const deltaTime = lastFrameTime ? (time - lastFrameTime) / 1000 : 0.016;
     lastFrameTime = time;
@@ -392,7 +390,6 @@ function animate(time) {
         if (Math.abs(scrollMomentum) < config.momentumThreshold) scrollMomentum = 0;
     }
 
-    // Snap after scrolling stops
     if (!isScrolling && Math.abs(scrollMomentum) < config.momentumThreshold) {
         snapToNearestSlide();
     }
@@ -407,27 +404,20 @@ function animate(time) {
     scrollDirection += (directionTarget - scrollDirection) * 0.08;
 
     const velocity = Math.abs(frameDelta) / deltaTime;
-
     velocityHistory.push(velocity);
     velocityHistory.shift();
-    const averageVelocity =
-        velocityHistory.reduce((a, b) => a + b) / velocityHistory.length;
-
+    const averageVelocity = velocityHistory.reduce((a, b) => a + b) / velocityHistory.length;
     if (averageVelocity > velocityPeak) velocityPeak = averageVelocity;
 
-    const isDecelerating =
-        averageVelocity / (velocityPeak + 0.001) < 0.7 && velocityPeak > 0.5;
+    const isDecelerating = averageVelocity / (velocityPeak + 0.001) < 0.7 && velocityPeak > 0.5;
     velocityPeak *= 0.99;
 
     if (velocity > 0.05)
         distortionTarget = Math.max(distortionTarget, Math.min(1, velocity * 0.1));
-
     if (isDecelerating || averageVelocity < 0.2)
         distortionTarget *= isDecelerating ? 0.95 : 0.855;
 
-    distortionAmount +=
-        (distortionTarget - distortionAmount) * config.distortionSmoothing;
-
+    distortionAmount += (distortionTarget - distortionAmount) * config.distortionSmoothing;
     const signedDistortion = distortionAmount * scrollDirection;
 
     let closestDistance = Infinity;
@@ -435,10 +425,8 @@ function animate(time) {
 
     meshes.forEach((mesh) => {
         const { offset } = mesh.userData;
-
         let y = -(offset - wrap(scrollPosition, loopLength));
         y = wrap(y + halfLoop, loopLength) - halfLoop;
-
         mesh.position.y = y;
 
         if (Math.abs(y) < closestDistance) {
@@ -451,23 +439,40 @@ function animate(time) {
         }
     });
 
-    // Update UI when active slide changes
+    // --- Slide change detection + effects ---
     if (closestIndex !== activeSlideIndex) {
         activeSlideIndex = closestIndex;
         const slide = slides[activeSlideIndex];
         titleElement.textContent = slide.name;
         counterElement.textContent = `${zeroPad(activeSlideIndex + 1)} / ${zeroPad(totalSlides)}`;
         kanaElement.textContent = slide.kana;
-        if (statusSlideElement) {
-            statusSlideElement.textContent = `CURRENT: ${zeroPad(activeSlideIndex + 1)}`;
-        }
+
+        // Trigger EVA effects on slide change
+        triggerSlideChangeEffects();
     }
+
+    // --- Warning stripes at stack edges ---
+    updateWarningStripes();
 
     renderer.render(scene, camera);
 }
 
+// === STATUS BAR: real FPS + slide ===
+function updateStatusBar() {
+    if (!statusSlideElement) return;
+
+    // FPS color coding
+    let fpsClass = "";
+    if (currentFPS < 30) fpsClass = "fps-critical";
+    else if (currentFPS < 50) fpsClass = "fps-warning";
+
+    statusSlideElement.innerHTML =
+        `FRAME: <span class="${fpsClass}">${currentFPS}FPS</span>` +
+        ` &nbsp;|&nbsp; SLIDE: ${zeroPad(activeSlideIndex >= 0 ? activeSlideIndex + 1 : 1)}` +
+        ` &nbsp;|&nbsp; DISTORTION: ${(distortionAmount * 100).toFixed(0)}%`;
+}
+
 // === BOOT ===
-// Initialize first slide display
 titleElement.textContent = slides[0].name;
 counterElement.textContent = `01 / ${zeroPad(totalSlides)}`;
 kanaElement.textContent = slides[0].kana;
