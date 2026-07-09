@@ -1,73 +1,358 @@
 <!doctype html>
-<html lang="en">
-
-<head>
+<html class="is-animating" lang="en">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Garfield Magnetic Marquee</title>
-    <link rel="stylesheet" href="./styles.css" />
-</head>
+    <title>咖啡色的猫 / MOTION SYSTEMS</title>
+    <meta
+      name="description"
+      content="A frontend motion practice for visual systems, interaction and rhythm."
+    />
+    <meta name="theme-color" content="#F0ECE4" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="咖啡色的猫 / MOTION SYSTEMS" />
+    <meta
+      property="og:description"
+      content="A frontend motion practice for visual systems, interaction and rhythm."
+    />
+    <meta property="og:image" content="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div class="transition-fade" aria-hidden="true"></div>
 
-<body>
-    <div class="grain"></div>
-    <div class="cursor"></div>
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <div class="preloader__meta">
+        <span>MOTION SYSTEMS</span>
+        <span>LOADING</span>
+      </div>
+      <div class="preloader__burst" id="preloader-burst"></div>
+      <div class="preloader__footer">A FRONTEND MOTION PRACTICE</div>
+    </div>
 
-    <section class="spotlight">
-        <div class="spotlight-accent"></div>
-        <div class="spotlight-nav">
-            <p>garfield.cc</p>
-            <p>github</p>
+    <nav class="nav" id="nav">
+      <div class="nav__bar">
+        <a href="/" class="nav__logo" aria-label="Motion Systems home">
+          <span class="nav__logoMark" aria-hidden="true">MS</span>
+          <span class="nav__logoWordmark">MOTION SYSTEMS</span>
+        </a>
+
+        <div class="nav__links">
+          <a href="#home-header" class="link nav__link flipLink" data-content="Motion">
+            <span>Motion</span>
+          </a>
+          <a href="#slider-cards" class="link nav__link flipLink" data-content="Systems">
+            <span>Systems</span>
+          </a>
+          <a href="#end" class="link nav__link flipLink" data-content="Frame">
+            <span>Frame</span>
+          </a>
         </div>
 
-        <div class="spotlight-marquee">
-            <div class="spotlight-marquee-track">
-                <div class="spotlight-marquee-item">
-                    <img src="./marquee-img-1.jpg" alt="" />
-                </div>
-                <div class="spotlight-marquee-item">
-                    <img src="./marquee-img-2.jpg" alt="" />
-                </div>
-                <div class="spotlight-marquee-item">
-                    <img src="./marquee-img-3.jpg" alt="" />
-                </div>
-                <div class="spotlight-marquee-item">
-                    <img src="./marquee-img-4.jpg" alt="" />
-                </div>
-                <div class="spotlight-marquee-item">
-                    <img src="./marquee-img-5.jpg" alt="" />
-                </div>
-                <div class="spotlight-marquee-item">
-                    <img src="./marquee-img-6.jpg" alt="" />
-                </div>
+        <div class="nav__cta">
+          <a href="#slider-cards" class="arrowButton">
+            <span class="arrowButton__arrow" aria-hidden="true"><span>↓</span></span>
+            <span class="arrowButton__label" data-content="View Motion">
+              <span>View Motion</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="nav__toggle" id="nav-toggle">
+          <span><span>Menu</span></span>
+        </div>
+      </div>
+
+      <div class="nav__menu">
+        <div class="nav__menuBg"></div>
+        <div class="nav__menuInner">
+          <div class="nav__menuLinks">
+            <a href="#home-header" class="link nav__menuLink">
+              <span>Motion</span>
+            </a>
+            <a href="#slider-cards" class="link nav__menuLink">
+              <span>Systems</span>
+            </a>
+            <a href="#grammar" class="link nav__menuLink">
+              <span>Composition</span>
+            </a>
+            <a href="#end" class="link nav__menuLink">
+              <span>Next Frame</span>
+            </a>
+          </div>
+
+          <div class="nav__menuSocial">
+            <span class="link nav__socialLink">
+              <span>A WEB EXPERIMENT BY 咖啡色的猫</span>
+            </span>
+            <span class="link nav__socialLink">
+              <span>NANJING / 2026</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="homeHeader scroll anima" id="home-header" data-anima-delay="0">
+        <div class="homeHeader__field" aria-hidden="true"></div>
+
+        <div class="homeHeader__mediaCards">
+          <div class="homeHeader__mediaCard homeHeader__mediaCard--photo">
+            <img src="/assets/motion-systems/hero-card-shadow.webp" class="media img" alt="" loading="eager" decoding="async" />
+          </div>
+          <div class="homeHeader__mediaCard homeHeader__mediaCard--photo">
+            <img src="/assets/motion-systems/hero-card-hand.webp" class="media img" alt="" loading="eager" decoding="async" />
+          </div>
+          <div class="homeHeader__mediaCard homeHeader__mediaCard--photo">
+            <img src="/assets/motion-systems/hero-card-metal.webp" class="media img" alt="" loading="eager" decoding="async" />
+          </div>
+          <div class="homeHeader__mediaCard homeHeader__mediaCard--photo">
+            <img src="/assets/motion-systems/hero-card-loop.webp" class="media img" alt="" loading="eager" decoding="async" />
+          </div>
+          <div class="homeHeader__mediaCard homeHeader__mediaCard--photo homeHeader__mediaCard--poster">
+            <img
+              src="/assets/motion-systems/hero-poster.webp"
+              class="media img"
+              alt="Long human shadow across a bright floor used as the Motion Systems hero poster"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <svg class="posterOverlay" viewBox="0 0 1200 760" aria-hidden="true">
+              <path class="posterOverlay__grid" d="M80 0V760M220 0V760M360 0V760M500 0V760M640 0V760M780 0V760M920 0V760M1060 0V760M0 110H1200M0 250H1200M0 390H1200M0 530H1200M0 670H1200"></path>
+              <path class="posterOverlay__signal" d="M114 604C286 328 464 284 640 392S922 592 1100 160"></path>
+              <path class="posterOverlay__blue" d="M132 168H510L442 620H1038"></path>
+              <rect class="posterOverlay__node" x="1088" y="148" width="22" height="22"></rect>
+              <rect class="posterOverlay__block" x="818" y="538" width="220" height="82"></rect>
+              <text class="posterOverlay__label" x="96" y="108">MS MOTION MAP</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="homeHeader__content">
+          <p class="homeHeader__kicker anima fade" data-anima-delay="5">
+            咖啡色的猫 / MOTION SYSTEMS
+          </p>
+          <h1
+            class="h0 homeHeader__heading zero h-anim anima"
+            data-spanner="w"
+            data-anima-delay="3"
+          >
+            <p>MAKE</p>
+            <p>THE SCREEN</p>
+            <p>MOVE.</p>
+          </h1>
+          <p class="body homeHeader__body anima fade" data-anima-delay="16">
+            A FRONTEND MOTION PRACTICE<br />
+            FOR VISUAL SYSTEMS, INTERACTION AND RHYTHM.
+          </p>
+        </div>
+
+        <div class="homeHeader__byline anima fade" data-anima-delay="22">
+          <span>A WEB EXPERIMENT BY 咖啡色的猫</span>
+          <span>NANJING / 2026</span>
+        </div>
+      </section>
+
+      <section class="mediaSentence">
+        <div class="mediaSentence__main pal scroll">
+          <div
+            class="h0 mediaSentence__sentence pal-reveal h-reveal u-hideMobile"
+            data-pal="0.145"
+            data-pal-push="4.1"
+          >
+            <p>Motion
+              <span class="window"><img src="/assets/motion-systems/media-motion-photo.webp" class="media img" alt="Blurred pedestrian motion across a doorway" loading="lazy" decoding="async" /></span>
+              begins</p>
+            <p>when layout</p>
+            <p>meets
+              <span class="window"><img src="/assets/motion-systems/media-frame-photo.webp" class="media img" alt="Brick wall and skylight geometry used as a frame study" loading="lazy" decoding="async" /></span>
+              timing.</p>
+            <p>A frame can</p>
+            <p>hold a rhythm.</p>
+          </div>
+
+          <div class="h0 mediaSentence__sentence anima scroll u-showMobile spanSkip h-anim" data-spanner="w">
+            <p>Motion begins</p>
+            <p>when layout</p>
+            <p>meets timing.</p>
+            <p>A frame can</p>
+            <p>hold a rhythm.</p>
+          </div>
+        </div>
+
+        <div class="mediaSentence__bottom scroll anima fade">
+          <p class="body">
+            Small transitions can change how a screen is read, remembered and touched.
+          </p>
+        </div>
+      </section>
+
+      <section class="workSlider" id="slider-cards">
+        <div class="workSlider__height workSlider__height--6">
+          <div class="workSlider__stick" id="slider-stick">
+            <div class="workSlider__top scroll anima fade">
+              <span class="subheading">CONCEPT EXPERIMENTS</span>
+              <p>Six studies in motion identity, depth and rhythm.</p>
+              <div class="workSlider__progress" aria-hidden="true">
+                <span id="slider-current">01</span>
+                <span class="workSlider__progressTrack">
+                  <span id="slider-progress"></span>
+                </span>
+                <span>06</span>
+              </div>
             </div>
-        </div>
 
-        <div class="spotlight-content-wrapper">
-            <h1>Garfield</h1>
-            <div class="spotlight-divider"></div>
-            <h3>Sleep well, code well</h3>
-            <div class="spotlight-copy">
-                <p>
-                    A lazy cat who loves lasagna, hates Mondays,
-                    and builds beautiful things on the web.
-                </p>
-                <p>
-                    No rush, no fuss — just creative front-end work
-                    at a comfortable pace.
-                </p>
+            <div class="workSlider__slider">
+              <div class="workSlider__rail scroll anima fade" id="slider-rail"></div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="companyData" id="grammar">
+        <div class="companyData__bg pal scroll">
+          <div class="companyData__bgInner">
+            <img
+              src="/assets/motion-systems/company-composition-photo.webp"
+              loading="lazy"
+              decoding="async"
+              class="media img"
+              alt="Glass facade and city geometry used as a composition field"
+            />
+            <svg class="companyComposition" viewBox="0 0 1600 900" aria-hidden="true">
+              <path class="companyComposition__grid" d="M160 0V900M520 0V900M880 0V900M1240 0V900M0 180H1600M0 520H1600M0 760H1600"></path>
+              <path class="companyComposition__signal" d="M174 708C374 424 560 396 748 510S1052 716 1386 228"></path>
+              <path class="companyComposition__blue" d="M244 304H676L610 720H1288"></path>
+              <text class="companyComposition__text companyComposition__text--c" x="124" y="812">RAF / SCROLL / GRID</text>
+            </svg>
+          </div>
         </div>
 
-        <div class="spotlight-footer">
-            <p>
-                Eat. Sleep. Code. Repeat — one nap at a time.
+        <div class="companyData__inner">
+          <div class="pal u-hideMobile">
+            <h2
+              class="h0 companyData__heading pal-reveal h-reveal"
+              data-pal="0.2"
+              data-pal-push="3.1"
+            >
+              <p>CODE</p>
+              <p>IS PART</p>
+              <p>OF THE</p>
+              <p>COMPOSITION.</p>
+            </h2>
+          </div>
+
+          <h2 class="h0 companyData__heading anima scroll u-showMobile spanSkip h-anim" data-spanner="w">
+            <p>CODE</p>
+            <p>IS PART</p>
+            <p>OF THE</p>
+            <p>COMPOSITION.</p>
+          </h2>
+
+          <div class="companyData__servicesList scroll">
+            <ol class="anima" id="ability-list"></ol>
+          </div>
+
+          <div class="companyData__bottom scroll anima fade">
+            <p class="body">Frontend structure, motion timing and visual direction belong to the same frame.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="clientLogos">
+        <div class="clientLogos__content">
+          <div class="clientLogos__contentInner scroll">
+            <p class="subheading anima text-fade">TECHNICAL MATERIALS</p>
+            <h2 class="h0 clientLogos__heading h-anim anima" data-spanner="w">
+              <p>TOOLS</p>
+              <p>IN</p>
+              <p>MOTION.</p>
+            </h2>
+            <p class="clientLogos__copy body anima fade" data-anima-delay="8">
+              The system behind the rhythm.
             </p>
+          </div>
         </div>
-    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
-    <script type="module" src="./script.js"></script>
-</body>
+        <div class="techWheel scroll anima fade" id="tech-wheel">
+          <div class="techWheel__viewport">
+            <div class="techWheel__stage">
+              <div class="techWheel__dial" aria-hidden="true">
+                <span class="techWheel__ring techWheel__ring--outer"></span>
+                <span class="techWheel__ring techWheel__ring--inner"></span>
+                <span class="techWheel__pointer"></span>
+              </div>
+              <div class="techWheel__center" aria-live="polite">
+                <span class="techWheel__centerIndex" id="tech-active-index">03</span>
+                <strong id="tech-active-name">GSAP</strong>
+                <p id="tech-active-note">Timeline control for motion.</p>
+              </div>
+              <div class="techWheel__track" id="tech-stack-track"></div>
+            </div>
+          </div>
+          <div class="techWheel__scroll-track" aria-hidden="true"></div>
+        </div>
 
+        <div class="techWheelMobile">
+          <div class="techWheelMobile__focus">
+            <span>03</span>
+            <strong>GSAP</strong>
+            <p>Timeline control for motion.</p>
+          </div>
+          <div class="techWheelMobile__rail" id="tech-stack-mobile" data-looper data-looper-speed="-1"></div>
+        </div>
+      </section>
+
+      <section class="callToAction" id="end">
+        <div class="callToAction__inner buttonHover scroll">
+          <div class="callToAction__texture" aria-hidden="true">
+            <img
+              src="/assets/motion-systems/cta-detail-photo.webp"
+              class="media img"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <h2 class="h0 callToAction__heading h-anim anima" data-spanner="w">
+            <p>LET&rsquo;S MAKE</p>
+            <p>A SCREEN</p>
+            <p>REMEMBER.</p>
+          </h2>
+
+          <a href="#home-header" class="callToAction__anchor" aria-label="Return to first frame"></a>
+
+          <div class="callToAction__buttonWrap">
+            <div data-follow=".callToAction__inner">
+              <a href="#home-header" class="button anima" data-anima-delay="30">
+                <span class="button__inner">ENTER THE NEXT FRAME</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer scroll">
+        <div class="footer__mainLinks">
+          <span class="link footer__mainLink anima maskIn" data-content="MOTION SYSTEMS">
+            <span>MOTION SYSTEMS</span>
+          </span>
+          <span class="link footer__mainLink anima maskIn" data-content="NANJING / 2026">
+            <span>NANJING / 2026</span>
+          </span>
+          <span class="link footer__mainLink anima maskIn" data-content="A WEB EXPERIMENT BY 咖啡色的猫">
+            <span>A WEB EXPERIMENT BY 咖啡色的猫</span>
+          </span>
+        </div>
+
+        <div class="footer__bottom anima fade scroll" data-anima-delay="10">
+          <span>A FRONTEND MOTION PRACTICE</span>
+          <span>VISUAL SYSTEMS / INTERACTION / RHYTHM</span>
+        </div>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>

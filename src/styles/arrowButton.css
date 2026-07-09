@@ -1,0 +1,72 @@
+.arrowButton {
+  min-height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--font-mono);
+}
+
+.arrowButton__arrow {
+  width: 2.7rem;
+  height: 2.7rem;
+  overflow: hidden;
+  background-color: var(--ink);
+  border: 1px solid var(--ink);
+  position: relative;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  color: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrowButton__arrow > span {
+  display: block;
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: transform 0.45s var(--ease-fold);
+}
+
+.arrowButton__label {
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  padding: 0.2rem 0;
+}
+
+.arrowButton__label span {
+  position: relative;
+  display: inline-block;
+  transform: translateY(0);
+}
+
+.arrowButton__label::after {
+  content: attr(data-content);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  transform: translateY(2rem);
+}
+
+@media (hover: hover) {
+  .arrowButton:hover .arrowButton__arrow > span,
+  .buttonHover:hover .arrowButton__arrow > span {
+    transform: translate3d(0, 0.35rem, 0);
+  }
+
+  .arrowButton:hover .arrowButton__label span,
+  .buttonHover:hover .arrowButton__label span {
+    transition: transform 0.5s var(--ease-fold);
+    transform: translateY(-2rem);
+  }
+
+  .arrowButton:hover .arrowButton__label::after,
+  .buttonHover:hover .arrowButton__label::after {
+    transition: transform 0.5s var(--ease-fold);
+    transform: translateY(0);
+  }
+}

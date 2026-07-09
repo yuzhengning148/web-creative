@@ -1,0 +1,213 @@
+.callToAction {
+  position: relative;
+  z-index: 2;
+  min-height: 104svh;
+  padding: 10rem 0 12rem;
+  display: grid;
+  place-items: center;
+  text-align: left;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.callToAction__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: auto;
+  cursor: default;
+  width: min(128rem, calc(100vw - 9.6rem));
+  isolation: isolate;
+}
+
+.callToAction__inner * {
+  cursor: default;
+}
+
+.callToAction__texture {
+  position: absolute;
+  right: 0;
+  bottom: 7.2rem;
+  z-index: 0;
+  width: min(38rem, 28vw);
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  opacity: 0.66;
+  border: 1px solid rgba(18, 18, 18, 0.16);
+  filter: contrast(1.16) saturate(0.72);
+}
+
+.callToAction__texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(240, 236, 228, 0.18), rgba(240, 236, 228, 0)),
+    linear-gradient(180deg, rgba(18, 18, 18, 0), rgba(18, 18, 18, 0.16));
+}
+
+.callToAction__heading {
+  font-size: clamp(6.8rem, 8.8vw, 14.4rem);
+  line-height: 0.86;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+  padding-bottom: 0.16em;
+  color: var(--ink);
+  max-width: 112rem;
+}
+
+.callToAction__heading p {
+  display: block;
+}
+
+.callToAction__heading p:nth-child(2) {
+  display: inline-block;
+  margin-left: 0.12em;
+  padding: 0.03em 0.1em 0.06em;
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.callToAction .h-anim.anima.spanned {
+  opacity: 1;
+  color: var(--ink);
+  transform: none;
+}
+
+.callToAction__anchor {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.callToAction__buttonWrap {
+  position: relative;
+  z-index: 3;
+  margin-top: 4rem;
+  align-self: flex-end;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+
+.callToAction__buttonWrap a {
+  pointer-events: auto;
+}
+
+.callToAction__buttonWrap [data-follow] {
+  will-change: transform;
+  pointer-events: none;
+}
+
+.callToAction__buttonWrap [data-follow] .button {
+  pointer-events: auto;
+}
+
+.button {
+  min-height: 4.2rem;
+  padding: 1.35rem 1.45rem;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--paper);
+  background-color: var(--signal);
+  border: 1px solid var(--signal);
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 1;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s var(--ease-out);
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.2rem;
+  background: rgba(240, 236, 228, 0.62);
+}
+
+.button:hover {
+  background-color: var(--ink);
+  border-color: var(--ink);
+  transform: translateY(-0.2rem);
+}
+
+.button.anima {
+  will-change: transform;
+  color: var(--paper);
+  transform: scaleX(0.5);
+  opacity: 0;
+}
+
+.button.anima.in {
+  opacity: 1;
+  transform: scaleX(1);
+  color: var(--paper);
+  transition:
+    opacity 0.3s linear,
+    transform 0.5s var(--ease-fold);
+}
+
+.callToAction .button.anima {
+  opacity: 1;
+  transform: scaleX(1);
+  color: var(--paper);
+}
+
+.button__inner {
+  display: block;
+}
+
+@media screen and (max-width: 1180px) {
+  .callToAction__heading {
+    font-size: 8.6rem;
+  }
+}
+
+@media screen and (orientation: portrait) and (max-width: 800px),
+  screen and (orientation: landscape) and (max-width: 1200px) and (max-height: 600px) {
+  .callToAction {
+    min-height: 92svh;
+    padding: 8rem 1.6rem 10rem;
+    display: block;
+  }
+
+  .callToAction__inner {
+    width: 100%;
+  }
+
+  .callToAction__heading {
+    font-size: 4.45rem;
+    line-height: 0.94;
+  }
+
+  .callToAction__texture {
+    right: 0;
+    bottom: 6.8rem;
+    width: 16rem;
+    opacity: 0.42;
+  }
+
+  .callToAction__buttonWrap {
+    margin-top: 3rem;
+    align-self: flex-start;
+    transform: rotate(-2deg);
+  }
+
+  .button {
+    font-size: 1rem;
+    padding: 1.25rem 1.2rem;
+    min-height: 3.8rem;
+  }
+}
