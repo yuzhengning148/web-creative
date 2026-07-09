@@ -1,0 +1,413 @@
+.workSlider {
+  position: relative;
+  z-index: 1;
+  background: var(--ink);
+  color: var(--paper);
+  margin-top: 0;
+}
+
+.workSlider__height {
+  min-height: 190rem;
+}
+
+.workSlider__height--6 {
+  height: 310rem;
+}
+
+.workSlider__stick {
+  position: sticky;
+  padding: 8rem 0 9rem;
+  top: 0;
+  bottom: 0;
+}
+
+.workSlider__top {
+  padding-left: 4.8rem;
+  margin-bottom: 5.5rem;
+}
+
+.workSlider__top .subheading {
+  margin-bottom: 1rem;
+  color: var(--signal);
+}
+
+.workSlider__top p {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: rgba(240, 236, 228, 0.68);
+}
+
+.workSlider__progress {
+  display: grid;
+  grid-template-columns: auto minmax(12rem, 24rem) auto;
+  align-items: center;
+  gap: 1.15rem;
+  width: fit-content;
+  margin-top: 2.2rem;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  color: rgba(240, 236, 228, 0.58);
+}
+
+.workSlider__progressTrack {
+  position: relative;
+  display: block;
+  height: 1px;
+  background: rgba(240, 236, 228, 0.18);
+  overflow: hidden;
+}
+
+.workSlider__progressTrack span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--work-progress, 0) * 100%);
+  background: linear-gradient(90deg, var(--signal), var(--cobalt));
+  transform-origin: left;
+}
+
+.workSlider.inside .workSlider__top,
+.workSlider.after .workSlider__top {
+  opacity: 0;
+  transition: opacity 0.3s linear !important;
+}
+
+.workSlider__slider {
+  height: 64rem;
+  position: relative;
+  max-height: calc(100vh - 20rem);
+  overflow: hidden;
+}
+
+.workSlider__rail {
+  white-space: nowrap;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+}
+
+.workCard {
+  display: inline-block;
+  margin: 0 2.2rem;
+  width: 76rem;
+  height: 100%;
+  vertical-align: top;
+  opacity: 0.58;
+  position: relative;
+  transition:
+    opacity 0.25s linear,
+    transform 0.55s var(--ease-fold);
+}
+
+.workCard::before {
+  content: "";
+  position: absolute;
+  top: 2.2rem;
+  right: 2.4rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  background: var(--signal);
+  z-index: 3;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s var(--ease-fold);
+  opacity: 0.34;
+  mix-blend-mode: screen;
+}
+
+.workCard:nth-child(even)::before {
+  background: var(--cobalt);
+}
+
+.workCard.active::before {
+  transform: scaleX(1);
+  transition: transform 0.18s var(--ease-fold);
+}
+
+.workCard__media {
+  height: 100%;
+  max-height: calc(100vh - 22rem);
+  width: 100%;
+  margin-bottom: 0;
+  z-index: 1;
+  position: relative;
+  background: var(--paper);
+  border: 1px solid rgba(240, 236, 228, 0.16);
+  overflow: hidden;
+  clip-path: inset(8% 8% 8% 8%);
+  transition: clip-path 0.7s var(--ease-out);
+}
+
+.workCard__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    linear-gradient(90deg, rgba(240, 236, 228, 0.11), rgba(240, 236, 228, 0) 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(18, 18, 18, 0) 45%, rgba(18, 18, 18, 0.12));
+}
+
+.workCard__media .media,
+.workCard__media video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.08);
+  transition: transform 0.9s var(--ease-out);
+}
+
+.workGraphic {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: none;
+  transition: opacity 0.5s ease;
+  opacity: 0.14;
+}
+
+.workCard:not(.active) .workGraphic {
+  opacity: 0.035;
+}
+
+.workGraphic svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.workGraphic__paper { fill: transparent; }
+.workGraphic__blue,
+.workGraphic__signal,
+.workGraphic__rings,
+.workGraphic__frame {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.workGraphic__blue {
+  stroke: var(--cobalt);
+  stroke-width: 1.45;
+}
+
+.workGraphic__signal {
+  stroke: var(--signal);
+  stroke-width: 1.55;
+}
+
+.workGraphic__dash {
+  stroke-dasharray: 24 22;
+}
+
+.workGraphic__rings {
+  stroke: rgba(240, 236, 228, 0.34);
+  stroke-width: 1.25;
+}
+
+.workGraphic__frame {
+  stroke: rgba(240, 236, 228, 0.42);
+  stroke-width: 1.35;
+}
+
+.workGraphic__blueBlock { fill: var(--cobalt); }
+.workGraphic__signalBlock { fill: var(--signal); }
+
+.workGraphic__blueBlock,
+.workGraphic__signalBlock {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.36);
+  opacity: 0.22;
+}
+
+.workGraphic__badge,
+.workGraphic__tag {
+  font-family: var(--font-mono);
+  fill: var(--paper);
+  letter-spacing: 0;
+}
+
+.workGraphic__badge {
+  font-size: 2.2rem;
+  opacity: 0.52;
+}
+
+.workGraphic__tag {
+  font-size: 1.05rem;
+  opacity: 0.34;
+}
+
+.workCard.active .workGraphic--pulse .workGraphic__rings {
+  animation: graphicPulse 1.8s ease-out infinite;
+  transform-origin: 50% 50%;
+}
+
+.workCard.active .workGraphic--trace .workGraphic__dash {
+  animation: traceDash 2.8s linear infinite;
+}
+
+.workCard.active .workGraphic {
+  opacity: 0.2;
+}
+
+.workCard.active .workGraphic__blueBlock,
+.workCard.active .workGraphic__signalBlock {
+  opacity: 0.34;
+}
+
+@keyframes graphicPulse {
+  0% { transform: scale(0.97); opacity: 0.7; }
+  100% { transform: scale(1.04); opacity: 1; }
+}
+
+@keyframes traceDash {
+  to { stroke-dashoffset: -92; }
+}
+
+.workCard__content {
+  position: absolute;
+  left: 2.4rem;
+  bottom: 2.4rem;
+  z-index: 4;
+  width: 25rem;
+  white-space: normal;
+  opacity: 0;
+  transform: translateY(2.8rem);
+  background: rgba(18, 18, 18, 0.28);
+  color: var(--paper);
+  padding: 1.05rem 1.1rem 1.12rem;
+  border: 1px solid rgba(240, 236, 228, 0.12);
+  backdrop-filter: blur(1px);
+  transition:
+    opacity 0.25s linear,
+    transform 0.55s var(--ease-out);
+}
+
+.workCard__content .subheading {
+  font-size: 1.05rem;
+  line-height: 1;
+  display: block;
+  color: rgba(240, 236, 228, 0.66);
+  margin-bottom: 0.78rem;
+}
+
+.workCard__heading {
+  font-size: 2.55rem;
+  line-height: 0.9;
+  margin-bottom: 0.78rem;
+  color: var(--paper);
+}
+
+.workCard__copy {
+  font-size: 1.18rem;
+  line-height: 1.32;
+  color: rgba(240, 236, 228, 0.7);
+}
+
+.workCard.active {
+  transform: translateY(-4rem);
+  opacity: 1;
+}
+
+.workCard.active .workCard__media {
+  clip-path: inset(0 0 0 0);
+}
+
+.workCard.active .workCard__media .media {
+  transform: scale(1);
+}
+
+.workCard.active .workCard__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.workSlider__rail.anima.fade.in,
+.workSlider__top.anima.fade.in {
+  opacity: 1;
+  transform: none;
+  color: inherit;
+}
+
+@media screen and (orientation: portrait) and (max-width: 800px),
+  screen and (orientation: landscape) and (max-width: 1200px) and (max-height: 600px) {
+  .workSlider.before .workSlider__stick {
+    position: absolute;
+    top: 0;
+  }
+
+  .workSlider.inside .workSlider__stick {
+    position: fixed;
+  }
+
+  .workSlider.after .workSlider__stick {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+  }
+
+  .workSlider__height--6 {
+    height: 230rem;
+  }
+
+  .workSlider__stick {
+    padding: 7rem 0;
+  }
+
+  .workSlider__top {
+    padding-left: 1.6rem;
+    margin-bottom: 4.5rem;
+  }
+
+  .workSlider__progress {
+    grid-template-columns: auto minmax(8rem, 14rem) auto;
+    margin-top: 1.8rem;
+  }
+
+  .workSlider__slider {
+    height: 55rem;
+    max-height: calc(100vh - 15rem);
+  }
+
+  .workCard {
+    width: 31rem;
+    margin: 0 1rem;
+    opacity: 0.72;
+  }
+
+  .workCard.active {
+    transform: translateY(-2.5rem);
+  }
+
+  .workCard::before {
+    width: 3.6rem;
+    height: 3.6rem;
+    right: 1.4rem;
+  }
+
+  .workCard__content {
+    left: 1.2rem;
+    bottom: 1.2rem;
+    width: calc(100% - 2.4rem);
+    padding: 1.4rem;
+    opacity: 1;
+    transform: none;
+  }
+
+  .workCard__heading {
+    font-size: 2.8rem;
+  }
+
+  .workCard__copy {
+    font-size: 1.3rem;
+  }
+}

@@ -1,0 +1,195 @@
+.u-hideMobile { display: block; }
+.u-showMobile { display: none; }
+
+@media screen and (orientation: portrait) and (max-width: 800px),
+  screen and (orientation: landscape) and (max-width: 1200px) and (max-height: 600px) {
+  .u-hideMobile { display: none !important; }
+  .u-showMobile { display: block !important; }
+}
+
+@media screen and (min-width: 800px) {
+  .u-showMobile { display: none !important; }
+}
+
+.h-reveal p > span:not(.m) {
+  transition: color 0.6s ease-in-out;
+  color: rgba(18, 18, 18, 0.34);
+}
+
+.h-reveal p > span:not(.m).in {
+  color: var(--ink);
+}
+
+.h-reveal p > span.m.in .window {
+  width: 14rem;
+}
+
+.window {
+  width: 0;
+  will-change: width;
+  transition:
+    width 0.85s var(--ease-fold),
+    opacity 0.5s linear;
+  opacity: 0;
+  height: 8.4rem;
+  display: inline-block;
+  margin: 0 -1rem;
+  position: relative;
+  transform: translateY(0.75rem);
+  z-index: -1;
+  overflow: hidden;
+  vertical-align: middle;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.window::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(240, 236, 228, 0.08), rgba(18, 18, 18, 0.08));
+  pointer-events: none;
+}
+
+.window img,
+.window picture,
+.window .media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.in .window,
+.h-reveal p > span.m.in .window {
+  opacity: 1;
+}
+
+.mediaSentence {
+  position: relative;
+  padding: 9rem 0 10rem;
+  min-height: 104vh;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.mediaSentence::before {
+  content: "";
+  position: absolute;
+  left: 4.8rem;
+  right: 4.8rem;
+  top: 0;
+  height: 1px;
+  background: var(--line);
+}
+
+.mediaSentence__main {
+  text-align: left;
+  padding-left: 4.8rem;
+}
+
+.mediaSentence__sentence {
+  max-width: 118rem;
+  font-size: 9.2rem;
+  line-height: 0.96;
+  position: relative;
+  z-index: 1;
+}
+
+.mediaSentence__sentence p {
+  display: block;
+}
+
+.mediaSentence__sentence p:nth-child(2),
+.mediaSentence__sentence p:nth-child(4) {
+  margin-left: 10rem;
+}
+
+.mediaSentence__sentence p:nth-child(3),
+.mediaSentence__sentence p:nth-child(5) {
+  margin-left: 24rem;
+}
+
+.mediaSentence__bottom {
+  width: 54rem;
+  margin-top: 6.5rem;
+  margin-left: 58vw;
+  padding-right: 4.8rem;
+}
+
+.mediaSentence__bottom .body {
+  font-size: 2.4rem;
+  font-weight: 400;
+  line-height: 1.22;
+  color: rgba(18, 18, 18, 0.68);
+  margin-bottom: 0;
+}
+
+.mediaSentence__bottom.anima.fade.in {
+  opacity: 1;
+  transform: none;
+  color: inherit;
+}
+
+.h-anim.spanSkip:not(.spanned) { opacity: 0; }
+.h-anim.spanSkip .w.skip { -webkit-mask-image: none; mask-image: none; }
+.h-anim.spanSkip.in .w .window {
+  width: 8rem;
+  z-index: 1;
+  opacity: 1;
+}
+
+.mediaSentence .h-anim.anima.spanned {
+  opacity: 1;
+  color: var(--ink);
+  transform: none;
+}
+
+@media screen and (max-width: 1180px) {
+  .mediaSentence__sentence { font-size: 7.2rem; }
+  .mediaSentence__bottom { margin-left: 45vw; }
+}
+
+@media screen and (orientation: portrait) and (max-width: 800px),
+  screen and (orientation: landscape) and (max-width: 1200px) and (max-height: 600px) {
+  .h-reveal p > span.m.in .window,
+  .h-anim.spanSkip.in .w .window { width: 5.8rem; }
+
+  .window {
+    height: 4.8rem;
+    margin: 0 -0.6rem;
+    transform: translateY(0.55rem);
+  }
+
+  .mediaSentence {
+    padding: 7rem 0 8rem;
+    min-height: auto;
+  }
+
+  .mediaSentence::before {
+    left: 1.6rem;
+    right: 1.6rem;
+  }
+
+  .mediaSentence__main {
+    padding: 0 1.6rem;
+  }
+
+  .mediaSentence__sentence {
+    font-size: 4.1rem;
+    line-height: 1.02;
+  }
+
+  .mediaSentence__sentence p:nth-child(n) { margin-left: 0; }
+  .mediaSentence__sentence p:nth-child(even) { margin-left: 3rem; }
+
+  .mediaSentence__bottom {
+    width: auto;
+    margin: 4.5rem 1.6rem 0;
+    padding-right: 0;
+  }
+
+  .mediaSentence__bottom .body {
+    font-size: 1.8rem;
+    line-height: 1.35;
+  }
+}
