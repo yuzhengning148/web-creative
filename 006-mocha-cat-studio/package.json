@@ -1,0 +1,29 @@
+{
+  "name": "mocha-cat-studio-legacy",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "apply-branding": "node scripts/apply-mocha-cat-branding.mjs",
+    "apply-static": "node scripts/apply-static-mode.mjs",
+    "build-wallpaper-assets": "node scripts/build-wallpaper-assets.mjs",
+    "check-assets": "node scripts/check-missing-assets.mjs",
+    "verify-site": "node scripts/verify-site.mjs"
+  },
+  "dependencies": {
+    "next": "16.2.10",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.10",
+    "typescript": "^5"
+  }
+}

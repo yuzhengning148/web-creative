@@ -12,13 +12,12 @@
 | 002 | anime-warp-slider | Three.js + GLSL + GSAP | 动漫海报 WebGL 透镜变形滑动切换 |
 | 003 | backdoor-meet | — | — |
 | 004 | anime-stack-slider | Three.js + HTML/CSS | EVA × 咒术回战 动漫壁纸 3D 堆叠轮播，速度驱动扭曲动效 + 磁性吸附 |
+| 005 | motion-systems | Vite + Vanilla JS | 动效设计工作室页面，包含预加载、内容循环与技术栈交互 |
+| 006 | mocha-cat-studio | Next.js + Three.js + GSAP | 咖啡色的猫个人混合作品集上一版，含 WebGL 轮播、立方体与环形图库 |
 
 ## 运行
 
-```bash
-cd <project-folder>
-npx serve .
-```
+静态项目进入对应目录后可运行 `npx serve .`。`005` 与 `006` 请先阅读各自目录中的 README，并使用 npm 启动。
 
 ## 声明
 
@@ -62,4 +61,10 @@ web-creative/
 │   ├── styles.css
 │   ├── script.js
 │   └── assets/
+├── 005-motion-systems/       # Vite motion studio experiment
+└── 006-mocha-cat-studio/     # Mocha Cat Studio legacy portfolio
+    ├── public/
+    ├── scripts/
+    ├── src/
+    └── package.json
 ```

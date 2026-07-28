@@ -1,0 +1,51 @@
+/* Mocha Cat static mode — keep hero WebGL interactive; disable grain / decorative video motion */
+
+#film-grain-canvas,
+#bg--noise {
+  display: none !important;
+}
+
+.brand-core-video-row {
+  display: none !important;
+}
+
+/* wavebg.mp4 = looping wave-distortion over Vermeer portrait; replace with static image */
+.dark-wrapper > video,
+.gallery-header-video video {
+  display: none !important;
+}
+
+.dark-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/images/mocha/atmosphere/footer.jpg") center center / cover no-repeat;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.gallery-header-video::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/images/mocha/atmosphere/footer.jpg") center center / cover no-repeat;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.scroll-indicator {
+  animation: none !important;
+}
+
+/* Cube front face: static poster when video is paused */
+.cube .face.front video.face-media,
+.mobile-cube-face.is-front video {
+  display: block !important;
+  object-fit: cover;
+}
+
+#mocha-cat-loader .nd-icon video {
+  display: block !important;
+}
